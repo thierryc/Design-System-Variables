@@ -59,15 +59,16 @@ var Rhythm = /*#__PURE__*/Object.freeze({
   OCTAVE: OCTAVE
 });
 
-var TYPO_FONT_FAMILY = "fontname"; // 
+var ROOT_FONTSIZE = 16;
+/* Edit your font  */
 
-var TYPO_CAP_HEIGHT = 0.68; // Base font size (px)
-
-var ROOT_FONTSIZE = 16; // Base line height
-
+var TYPO_FONT_FAMILY_URL = 'https://fonts.googleapis.com/css?family=Lato|Lora:400,700';
+var TYPO_FONT_FAMILY = "'Lora', serif";
+var TYPO_CAP_HEIGHT = 0.7;
+var TYPO_FONT_FAMILY_BODY = "'Lato', sans-serif";
+var TYPO_CAP_HEIGHT_BODY = 0.725;
 var TYPO_BASE_LINE_HEIGHT = 1.6;
-var RHYTHM_SCALE = FIBONACCI; // Bold headers
-
+var RHYTHM_SCALE = FIBONACCI;
 var TYPO_BOLD_HEADERS = true; // Scale Rhythm adjustment
 
 var TYPO_SCALE_H1 = 4;
@@ -82,9 +83,12 @@ var TYPO_HEADER_SPACING_AFTER = 0;
 var TYPO_UNIT = 'em';
 
 var Typography = /*#__PURE__*/Object.freeze({
+  ROOT_FONTSIZE: ROOT_FONTSIZE,
+  TYPO_FONT_FAMILY_URL: TYPO_FONT_FAMILY_URL,
   TYPO_FONT_FAMILY: TYPO_FONT_FAMILY,
   TYPO_CAP_HEIGHT: TYPO_CAP_HEIGHT,
-  ROOT_FONTSIZE: ROOT_FONTSIZE,
+  TYPO_FONT_FAMILY_BODY: TYPO_FONT_FAMILY_BODY,
+  TYPO_CAP_HEIGHT_BODY: TYPO_CAP_HEIGHT_BODY,
   TYPO_BASE_LINE_HEIGHT: TYPO_BASE_LINE_HEIGHT,
   RHYTHM_SCALE: RHYTHM_SCALE,
   TYPO_BOLD_HEADERS: TYPO_BOLD_HEADERS,
@@ -299,13 +303,14 @@ var Colors = /*#__PURE__*/Object.freeze({
  * @param {Bollean} heading is a heading to get paddingTop and marginBottom.
  */
 
-var getTypographicElement = function getTypographicElement(level, heading) {
+var getTypographicElement = function getTypographicElement(level, capHeight, fontFamily) {
+  var heading = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   var rhythmUnit = Math.round(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
   var fontSizeFactor = Math.pow(RHYTHM_SCALE, level);
   var fontSize = Math.round(ROOT_FONTSIZE * fontSizeFactor);
   var unitsInSize = Math.ceil((fontSize + 0.001) / rhythmUnit);
   var lineHeight = Math.round(rhythmUnit * unitsInSize);
-  var shift = Math.round((lineHeight - fontSize * TYPO_CAP_HEIGHT) / 2);
+  var shift = Math.round((lineHeight - fontSize * capHeight) / 2);
   var paddingTop = shift;
   var marginBottom = (shift > rhythmUnit ? 2 : 1) * rhythmUnit - shift;
 
@@ -315,6 +320,7 @@ var getTypographicElement = function getTypographicElement(level, heading) {
   }
 
   return {
+    fontFamily: fontFamily,
     fontSize: "".concat(fontSize.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
     lineHeight: "".concat(lineHeight.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
     paddingTop: "".concat(paddingTop.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
@@ -322,13 +328,13 @@ var getTypographicElement = function getTypographicElement(level, heading) {
   };
 };
 
-var h1 = getTypographicElement(TYPO_SCALE_H1, true);
-var h2 = getTypographicElement(TYPO_SCALE_H2, true);
-var h3 = getTypographicElement(TYPO_SCALE_H3, true);
-var h4 = getTypographicElement(TYPO_SCALE_H4, true);
-var h5 = getTypographicElement(TYPO_SCALE_H5, true);
-var h6 = getTypographicElement(TYPO_SCALE_H6, true);
-var p = getTypographicElement(0, false);
+var h1 = getTypographicElement(TYPO_SCALE_H1, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var h2 = getTypographicElement(TYPO_SCALE_H2, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var h3 = getTypographicElement(TYPO_SCALE_H3, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var h4 = getTypographicElement(TYPO_SCALE_H4, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var h5 = getTypographicElement(TYPO_SCALE_H5, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var h6 = getTypographicElement(TYPO_SCALE_H6, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var p = getTypographicElement(0, TYPO_CAP_HEIGHT_BODY, TYPO_FONT_FAMILY_BODY, false);
 var CSSFont = {
   h1: h1,
   h2: h2,

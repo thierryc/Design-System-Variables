@@ -1,17 +1,20 @@
 import { FIBONACCI } from './Rhythm';
 
-export const TYPO_FONT_FAMILY = `fontname`;
-// 
-export const TYPO_CAP_HEIGHT = 0.68;
-
-// Base font size (px)
 export const ROOT_FONTSIZE = 16;
-// Base line height
+
+/* Edit your font  */
+export const TYPO_FONT_FAMILY_URL = 'https://fonts.googleapis.com/css?family=Lato|Lora:400,700';
+
+export const TYPO_FONT_FAMILY = `'Lora', serif`;
+export const TYPO_CAP_HEIGHT = 0.7;
+
+export const TYPO_FONT_FAMILY_BODY = `'Lato', sans-serif`;
+export const TYPO_CAP_HEIGHT_BODY = 0.725;
+
 export const TYPO_BASE_LINE_HEIGHT = 1.6;
 
 export const RHYTHM_SCALE = FIBONACCI;
 
-// Bold headers
 export const TYPO_BOLD_HEADERS = true;
 
 // Scale Rhythm adjustment

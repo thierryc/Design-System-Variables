@@ -8,8 +8,7 @@ import { FIXDIGIT } from './Constant'
  * @param {Bollean} heading is a heading to get paddingTop and marginBottom.
  */
 
-
-const getTypographicElement = ( level, heading ) => {
+const getTypographicElement = ( level, capHeight, fontFamily, heading = false ) => {
 
   const rhythmUnit = Math.round( cfg.ROOT_FONTSIZE * cfg.TYPO_BASE_LINE_HEIGHT );
 		
@@ -17,7 +16,7 @@ const getTypographicElement = ( level, heading ) => {
   const fontSize = Math.round( cfg.ROOT_FONTSIZE * fontSizeFactor );
   const unitsInSize = Math.ceil( ( fontSize + 0.001 ) / rhythmUnit );
   const lineHeight = Math.round( rhythmUnit * unitsInSize );
-  const shift = Math.round( ( lineHeight - ( fontSize * cfg.TYPO_CAP_HEIGHT ) ) / 2 );
+  const shift = Math.round( ( lineHeight - ( fontSize * capHeight ) ) / 2 );
   let paddingTop = shift;
   let marginBottom = ( shift > rhythmUnit ? 2 : 1 ) * rhythmUnit - shift;
   if ( heading ) {
@@ -25,6 +24,7 @@ const getTypographicElement = ( level, heading ) => {
     marginBottom += cfg.TYPO_HEADER_SPACING_AFTER * rhythmUnit;
   }
   return {
+    fontFamily,
     fontSize: `${fontSize.toFixed(FIXDIGIT)}${cfg.TYPO_UNIT}`,
     lineHeight: `${lineHeight.toFixed(FIXDIGIT)}${cfg.TYPO_UNIT}`,
     paddingTop: `${paddingTop.toFixed(FIXDIGIT)}${cfg.TYPO_UNIT}`,
@@ -32,13 +32,13 @@ const getTypographicElement = ( level, heading ) => {
   }
 }
 
-const h1 = getTypographicElement( cfg.TYPO_SCALE_H1, true );
-const h2 = getTypographicElement( cfg.TYPO_SCALE_H2, true );
-const h3 = getTypographicElement( cfg.TYPO_SCALE_H3, true );
-const h4 = getTypographicElement( cfg.TYPO_SCALE_H4, true );
-const h5 = getTypographicElement( cfg.TYPO_SCALE_H5, true );
-const h6 = getTypographicElement( cfg.TYPO_SCALE_H6, true );
-const p = getTypographicElement( 0, false );
+const h1 = getTypographicElement( cfg.TYPO_SCALE_H1, cfg.TYPO_CAP_HEIGHT, cfg.TYPO_FONT_FAMILY, true );
+const h2 = getTypographicElement( cfg.TYPO_SCALE_H2, cfg.TYPO_CAP_HEIGHT, cfg.TYPO_FONT_FAMILY, true );
+const h3 = getTypographicElement( cfg.TYPO_SCALE_H3, cfg.TYPO_CAP_HEIGHT, cfg.TYPO_FONT_FAMILY, true );
+const h4 = getTypographicElement( cfg.TYPO_SCALE_H4, cfg.TYPO_CAP_HEIGHT, cfg.TYPO_FONT_FAMILY, true );
+const h5 = getTypographicElement( cfg.TYPO_SCALE_H5, cfg.TYPO_CAP_HEIGHT, cfg.TYPO_FONT_FAMILY, true );
+const h6 = getTypographicElement( cfg.TYPO_SCALE_H6, cfg.TYPO_CAP_HEIGHT, cfg.TYPO_FONT_FAMILY, true );
+const p = getTypographicElement( 0, cfg.TYPO_CAP_HEIGHT_BODY, cfg.TYPO_FONT_FAMILY_BODY, false );
 
 const CSSFont = {
   h1,
