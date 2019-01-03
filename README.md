@@ -5,18 +5,40 @@ A “ready to use” set of variables for Design System.
 
 Low level variables for CSS in JS.
 
-## Font
+# Typography
 
-### 2 fonts
+## Fonts
 
 * 1 heading font (Lora serif font)
 * 1 body font (Nato sans serif font)
 
-## Brand colors 
+## Colors 
 
 * 4 brand colors
 
-# Layout,Columns, gutters, and margins
+# Layout, Columns, gutters, and margins
+
+## Columns
+
+Content is placed in the areas of the screen that contain columns. 
+Column width is defined using percentages.
+
+* COL_NUMB_SX = 4;
+* COL_NUMB_SM = 4;
+* COL_NUMB_MD = 8;
+* COL_NUMB_LG = 12;
+* COL_NUMB_XL = 12;
+
+## Gutters
+
+Gutters are the spaces between columns. They help separate content. 
+Gutter widths are fixed values at each breakpoint range.
+
+* GUTTER_SX
+* GUTTER_SM
+* GUTTER_MD
+* GUTTER_LG
+* GUTTER_XL
 
 
 
