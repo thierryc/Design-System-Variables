@@ -18,7 +18,7 @@ Low level variables for CSS in JS.
 
 # Grid
 
-The grid is 1/3 of the lineHeight.
+The grid is 1/3 of the lineHeight. (~ 8px)
 
 # Layout, Columns, gutters, and margins
 
@@ -56,7 +56,6 @@ Margins are the space between content and the left and right edges of the screen
 * MARGIN_XL = 4 * grid (~32px)
 
 ## How to use
-
 
 
 # Variables list
