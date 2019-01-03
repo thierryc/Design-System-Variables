@@ -9,19 +9,14 @@ import { FIXDIGIT } from './Constant'
  */
 
 const getTypographicElement = ( level, capHeight, fontFamily, heading = false ) => {
-
-  const rhythmUnit = Math.round( cfg.ROOT_FONTSIZE * cfg.TYPO_BASE_LINE_HEIGHT );
-		
-  const fontSizeFactor = Math.pow( cfg.RHYTHM_SCALE, level );
-  const fontSize = Math.round( cfg.ROOT_FONTSIZE * fontSizeFactor );
-  const unitsInSize = Math.ceil( ( fontSize + 0.001 ) / rhythmUnit );
-  const lineHeight = Math.round( rhythmUnit * unitsInSize );
-  const shift = Math.round( ( lineHeight - ( fontSize * capHeight ) ) / 2 );
+  const fontSize =  Math.pow( cfg.RHYTHM_SCALE, level );
+  const lineHeight = cfg.TYPO_BASE_LINE_HEIGHT * fontSize;
+  const shift = ( lineHeight - ( fontSize * capHeight ) ) / 2;
   let paddingTop = shift;
-  let marginBottom = ( shift > rhythmUnit ? 2 : 1 ) * rhythmUnit - shift;
+  let marginBottom = ( shift > cfg.TYPO_BASE_LINE_HEIGHT ? 2 : 1 ) * cfg.TYPO_BASE_LINE_HEIGHT - shift;
   if ( heading ) {
-    paddingTop += cfg.TYPO_HEADER_SPACING_BEFORE * rhythmUnit;
-    marginBottom += cfg.TYPO_HEADER_SPACING_AFTER * rhythmUnit;
+    paddingTop += cfg.TYPO_HEADER_SPACING_BEFORE * cfg.TYPO_BASE_LINE_HEIGHT;
+    marginBottom += cfg.TYPO_HEADER_SPACING_AFTER * cfg.TYPO_BASE_LINE_HEIGHT;
   }
   return {
     fontFamily,
@@ -29,6 +24,7 @@ const getTypographicElement = ( level, capHeight, fontFamily, heading = false ) 
     lineHeight: `${lineHeight.toFixed(FIXDIGIT)}${cfg.TYPO_UNIT}`,
     paddingTop: `${paddingTop.toFixed(FIXDIGIT)}${cfg.TYPO_UNIT}`,
     marginBottom: `${marginBottom.toFixed(FIXDIGIT)}${cfg.TYPO_UNIT}`,
+   '__fontSizeFactor': fontSize,
   }
 }
 

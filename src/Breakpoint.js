@@ -1,4 +1,3 @@
-import { FIXDIGIT } from './Constant' 
 import { ROOT_FONTSIZE } from './Typography'
 import { 
     SCREEN_SIZE_MIN_XS, 
@@ -7,9 +6,7 @@ import {
     SCREEN_SIZE_MIN_LG, 
     SCREEN_SIZE_MIN_XL
 } from './ScreenSize'
-
-const getEmString = (val) => (val === 0) ? val : `${val.toFixed(FIXDIGIT)}em`;
-const getPxString = (val) => (val === 0) ? val : `${val.toFixed(0)}px`;
+import { getEmString, getPxString } from './Helper';
 
 const SCREEN_XS = SCREEN_SIZE_MIN_XS / ROOT_FONTSIZE;
 

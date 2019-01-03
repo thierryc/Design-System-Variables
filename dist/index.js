@@ -36,8 +36,6 @@ function _objectSpread(target) {
   return target;
 }
 
-var FIXDIGIT = 3;
-
 // Scale Rhythm
 var MINOR_THIRD = 1.2;
 var MAJOR_THIRD = 1.25;
@@ -109,10 +107,11 @@ var SCREEN_SIZE_MIN_MD = 1024;
 var SCREEN_SIZE_MIN_LG = 1440;
 var SCREEN_SIZE_MIN_XL = 1920;
 
+var FIXDIGIT = 3;
+
 var getEmString = function getEmString(val) {
   return val === 0 ? val : "".concat(val.toFixed(FIXDIGIT), "em");
 };
-
 var getPxString = function getPxString(val) {
   return val === 0 ? val : "".concat(val.toFixed(0), "px");
 };
@@ -305,18 +304,15 @@ var Colors = /*#__PURE__*/Object.freeze({
 
 var getTypographicElement = function getTypographicElement(level, capHeight, fontFamily) {
   var heading = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-  var rhythmUnit = Math.round(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
-  var fontSizeFactor = Math.pow(RHYTHM_SCALE, level);
-  var fontSize = Math.round(ROOT_FONTSIZE * fontSizeFactor);
-  var unitsInSize = Math.ceil((fontSize + 0.001) / rhythmUnit);
-  var lineHeight = Math.round(rhythmUnit * unitsInSize);
-  var shift = Math.round((lineHeight - fontSize * capHeight) / 2);
+  var fontSize = Math.pow(RHYTHM_SCALE, level);
+  var lineHeight = TYPO_BASE_LINE_HEIGHT * fontSize;
+  var shift = (lineHeight - fontSize * capHeight) / 2;
   var paddingTop = shift;
-  var marginBottom = (shift > rhythmUnit ? 2 : 1) * rhythmUnit - shift;
+  var marginBottom = (shift > TYPO_BASE_LINE_HEIGHT ? 2 : 1) * TYPO_BASE_LINE_HEIGHT - shift;
 
   if (heading) {
-    paddingTop += TYPO_HEADER_SPACING_BEFORE * rhythmUnit;
-    marginBottom += TYPO_HEADER_SPACING_AFTER * rhythmUnit;
+    paddingTop += TYPO_HEADER_SPACING_BEFORE * TYPO_BASE_LINE_HEIGHT;
+    marginBottom += TYPO_HEADER_SPACING_AFTER * TYPO_BASE_LINE_HEIGHT;
   }
 
   return {
@@ -324,7 +320,8 @@ var getTypographicElement = function getTypographicElement(level, capHeight, fon
     fontSize: "".concat(fontSize.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
     lineHeight: "".concat(lineHeight.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
     paddingTop: "".concat(paddingTop.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
-    marginBottom: "".concat(marginBottom.toFixed(FIXDIGIT)).concat(TYPO_UNIT)
+    marginBottom: "".concat(marginBottom.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
+    '__fontSizeFactor': fontSize
   };
 };
 
@@ -355,6 +352,36 @@ var BrandColors = /*#__PURE__*/Object.freeze({
 
 });
 
+var grid = TYPO_BASE_LINE_HEIGHT / 3;
+var GUTTER_SX = getEmString(1 * grid);
+var GUTTER_SM = getEmString(1 * grid);
+var GUTTER_MD = getEmString(2 * grid);
+var GUTTER_LG = getEmString(3 * grid);
+var GUTTER_XL = getEmString(3 * grid);
+
+var Gutter = /*#__PURE__*/Object.freeze({
+  GUTTER_SX: GUTTER_SX,
+  GUTTER_SM: GUTTER_SM,
+  GUTTER_MD: GUTTER_MD,
+  GUTTER_LG: GUTTER_LG,
+  GUTTER_XL: GUTTER_XL
+});
+
+var grid$1 = TYPO_BASE_LINE_HEIGHT / 3;
+var MARGIN_SX = getEmString(2 * grid$1);
+var MARGIN_SM = getEmString(2 * grid$1);
+var MARGIN_MD = getEmString(3 * grid$1);
+var MARGIN_LG = getEmString(4 * grid$1);
+var MARGIN_XL = getEmString(4 * grid$1);
+
+var Margin = /*#__PURE__*/Object.freeze({
+  MARGIN_SX: MARGIN_SX,
+  MARGIN_SM: MARGIN_SM,
+  MARGIN_MD: MARGIN_MD,
+  MARGIN_LG: MARGIN_LG,
+  MARGIN_XL: MARGIN_XL
+});
+
 var ZINDEX_GROUND = 0;
 var ZINDEX_DROPDOWN = 1000;
 var ZINDEX_sticky = 1020;
@@ -375,7 +402,7 @@ var ZIndex = /*#__PURE__*/Object.freeze({
   ZINDEX_TOOLTIP: ZINDEX_TOOLTIP
 });
 
-var DSV = _objectSpread({}, Breakpoint, Typography, Colors, BrandColors, ZIndex);
+var DSV = _objectSpread({}, Breakpoint, Typography, Colors, BrandColors, Gutter, Margin, ZIndex);
 
 exports.Rhythm = Rhythm;
 exports.Style = CSSFont$1;
