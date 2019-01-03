@@ -14,6 +14,20 @@ Low level variables for CSS in JS.
 * Font Family (Heading and Body)
 * Line height
 
+## Rhythm Scale
+
+* Rhythm (FIBONACCI)
+
+## BrandColors
+
+## Background Colors
+
+## Main Colors
+
+* Blue Hue
+* Green Hue
+* Yellow Hue
+* Red Hue
 
 # All Variables:
 
