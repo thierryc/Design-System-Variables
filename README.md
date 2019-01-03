@@ -41,8 +41,13 @@ Gutter widths are fixed values at each breakpoint range.
 * GUTTER_XL
 
 
+## Margins
 
+Margins are the space between content and the left and right edges of the screen.
 
+# Horizontal grids
+
+Define by the typography ?
 
 
 ## How to use
