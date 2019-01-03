@@ -1,0 +1,37 @@
+{
+  "name": "@ap.cx/design-system-variables",
+  "version": "1.0.0-alpha",
+  "description": "design system variables",
+  "author": "thierryc",
+  "license": "MIT",
+  "repository": "thierryc/design-system-variables",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "browser": "dist/index.umd.js",
+  "jsnext:main": "dist/index.es.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "node test/test.js",
+    "pretest": "npm run build",
+    "lint": "node_modules/eslint/bin/eslint.js 'src/**/*' --fix",
+    "predeploy": "cd gh-pages && git pull && npm install && npm run build",
+    "deploy": "gh-pages -d gh-pages/build"
+  },
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "rollup": "^1.0.0",
+    "rollup-plugin-babel": "^4.2.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}
