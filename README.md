@@ -18,7 +18,7 @@ Low level variables for CSS in JS.
 
 # Grid
 
-The gird is 1/3 of the lineHeight.
+The grid is 1/3 of the lineHeight.
 
 # Layout, Columns, gutters, and margins
 
@@ -38,22 +38,22 @@ Column width is defined using percentages.
 Gutters are the spaces between columns. They help separate content. 
 Gutter widths are fixed values at each breakpoint range.
 
-* GUTTER_SX = 1 * gird (~8px)
-* GUTTER_SM = 1 * gird (~8px)
-* GUTTER_MD = 2 * gird (~16px)
-* GUTTER_LG = 3 * gird (~24px)
-* GUTTER_XL = 3 * gird (~24px)
+* GUTTER_SX = 1 * grid (~8px)
+* GUTTER_SM = 1 * grid (~8px)
+* GUTTER_MD = 2 * grid (~16px)
+* GUTTER_LG = 3 * grid (~24px)
+* GUTTER_XL = 3 * grid (~24px)
 
 
 ## Margins
 
 Margins are the space between content and the left and right edges of the screen.
 
-* MARGIN_SX = 2 * gird (~16px)
-* MARGIN_SM = 2 * gird (~16px)
-* MARGIN_MD = 3 * gird (~24px)
-* MARGIN_LG = 4 * gird (~24px)
-* MARGIN_XL = 4 * gird (~32px)
+* MARGIN_SX = 2 * grid (~16px)
+* MARGIN_SM = 2 * grid (~16px)
+* MARGIN_MD = 3 * grid (~24px)
+* MARGIN_LG = 4 * grid (~24px)
+* MARGIN_XL = 4 * grid (~32px)
 
 ## How to use
 
