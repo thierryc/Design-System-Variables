@@ -6,8 +6,5 @@ A “ready to use” set of variables for Design System.
 
 Low level variables for CSS in JS.
 
-Technology agnostics 
-React or Vue Project. 
-
 
 
