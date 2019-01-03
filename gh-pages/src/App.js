@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import * as DSV from './dsv';
+
 class App extends Component {
   render() {
     return (
@@ -20,6 +22,9 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <pre>
+        { JSON.stringify(DSV, null, 4) }
+        </pre>
       </div>
     );
   }

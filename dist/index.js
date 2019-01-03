@@ -36,6 +36,8 @@ function _objectSpread(target) {
   return target;
 }
 
+var FIXDIGIT = 3;
+
 // Scale Rhythm
 var MINOR_THIRD = 1.2;
 var MAJOR_THIRD = 1.25;
@@ -73,10 +75,11 @@ var TYPO_SCALE_H2 = 3;
 var TYPO_SCALE_H3 = 2;
 var TYPO_SCALE_H4 = 1;
 var TYPO_SCALE_H5 = 0;
-var TYPO_SCALE_H6 = -1; // Extra header spacing
+var TYPO_SCALE_H6 = -0.5; // Extra header spacing
 
 var TYPO_HEADER_SPACING_BEFORE = 1;
 var TYPO_HEADER_SPACING_AFTER = 0;
+var TYPO_UNIT = 'em';
 
 var Typography = /*#__PURE__*/Object.freeze({
   TYPO_FONT_FAMILY: TYPO_FONT_FAMILY,
@@ -92,7 +95,8 @@ var Typography = /*#__PURE__*/Object.freeze({
   TYPO_SCALE_H5: TYPO_SCALE_H5,
   TYPO_SCALE_H6: TYPO_SCALE_H6,
   TYPO_HEADER_SPACING_BEFORE: TYPO_HEADER_SPACING_BEFORE,
-  TYPO_HEADER_SPACING_AFTER: TYPO_HEADER_SPACING_AFTER
+  TYPO_HEADER_SPACING_AFTER: TYPO_HEADER_SPACING_AFTER,
+  TYPO_UNIT: TYPO_UNIT
 });
 
 var SCREEN_SIZE_MIN_XS = 0;
@@ -101,32 +105,41 @@ var SCREEN_SIZE_MIN_MD = 1024;
 var SCREEN_SIZE_MIN_LG = 1440;
 var SCREEN_SIZE_MIN_XL = 1920;
 
+var getEmString = function getEmString(val) {
+  return val === 0 ? val : "".concat(val.toFixed(FIXDIGIT), "em");
+};
+
+var getPxString = function getPxString(val) {
+  return val === 0 ? val : "".concat(val.toFixed(0), "px");
+};
+
 var SCREEN_XS = SCREEN_SIZE_MIN_XS / ROOT_FONTSIZE; // Extra small screen / phone
 
-var SCREEN_MIN_XS = "".concat(SCREEN_XS, "em");
+var SCREEN_MIN_XS = getEmString(SCREEN_XS);
 var SCREEN_SM = SCREEN_SIZE_MIN_SM / ROOT_FONTSIZE;
-var SCREEN_MIN_SM = "".concat(SCREEN_SM, "em");
+var SCREEN_MIN_SM = getEmString(SCREEN_SM);
 var SCREEN_MD = SCREEN_SIZE_MIN_MD / ROOT_FONTSIZE;
-var SCREEN_MIN_MD = "".concat(SCREEN_MD, "em");
+var SCREEN_MIN_MD = getEmString(SCREEN_MD);
 var SCREEN_LG = SCREEN_SIZE_MIN_LG / ROOT_FONTSIZE;
-var SCREEN_MIN_LG = "".concat(SCREEN_LG, "em");
+var SCREEN_MIN_LG = getEmString(SCREEN_LG);
 var SCREEN_XL = SCREEN_SIZE_MIN_XL / ROOT_FONTSIZE;
-var SCREEN_MIN_XL = "".concat(SCREEN_XL, "em");
-var SCREEN_MAX_XS = "".concat(SCREEN_SM - 1 / ROOT_FONTSIZE, "em");
-var SCREEN_MAX_SM = "".concat(SCREEN_MD - 1 / ROOT_FONTSIZE, "em");
-var SCREEN_MAX_MD = "".concat(SCREEN_LG - 1 / ROOT_FONTSIZE, "em");
-var SCREEN_MAX_LG = "".concat(SCREEN_XL - 1 / ROOT_FONTSIZE, "em"); // Pixel 
+var SCREEN_MIN_XL = getEmString(SCREEN_XL);
+var SCREEN_MAX_XS = getEmString(SCREEN_SM - 1 / ROOT_FONTSIZE);
+var SCREEN_MAX_SM = getEmString(SCREEN_MD - 1 / ROOT_FONTSIZE);
+var SCREEN_MAX_MD = getEmString(SCREEN_LG - 1 / ROOT_FONTSIZE);
+var SCREEN_MAX_LG = getEmString(SCREEN_XL - 1 / ROOT_FONTSIZE); // Pixel 
 // MIN
 
-var SCREEN_MIN_SM_PX = "".concat(SCREEN_SIZE_MIN_SM, "px");
-var SCREEN_MIN_MD_PX = "".concat(SCREEN_SIZE_MIN_MD, "px");
-var SCREEN_MIN_LG_PX = "".concat(SCREEN_SIZE_MIN_LG, "px");
-var SCREEN_MIN_XL_PX = "".concat(SCREEN_SIZE_MIN_XL, "px"); // MAX
+var SCREEN_MIN_XS_PX = getPxString(SCREEN_SIZE_MIN_XS);
+var SCREEN_MIN_SM_PX = getPxString(SCREEN_SIZE_MIN_SM);
+var SCREEN_MIN_MD_PX = getPxString(SCREEN_SIZE_MIN_MD);
+var SCREEN_MIN_LG_PX = getPxString(SCREEN_SIZE_MIN_LG);
+var SCREEN_MIN_XL_PX = getPxString(SCREEN_SIZE_MIN_XL); // MAX
 
-var SCREEN_MAX_XS_PX = "".concat(SCREEN_SIZE_MIN_SM - 1, "px");
-var SCREEN_MAX_SM_PX = "".concat(SCREEN_SIZE_MIN_MD - 1, "px");
-var SCREEN_MAX_MD_PX = "".concat(SCREEN_SIZE_MIN_LG - 1, "px");
-var SCREEN_MAX_LG_PX = "".concat(SCREEN_SIZE_MIN_XL - 1, "px");
+var SCREEN_MAX_XS_PX = getPxString(SCREEN_SIZE_MIN_SM - 1);
+var SCREEN_MAX_SM_PX = getPxString(SCREEN_SIZE_MIN_MD - 1);
+var SCREEN_MAX_MD_PX = getPxString(SCREEN_SIZE_MIN_LG - 1);
+var SCREEN_MAX_LG_PX = getPxString(SCREEN_SIZE_MIN_XL - 1);
 
 var Breakpoint = /*#__PURE__*/Object.freeze({
   SCREEN_MIN_XS: SCREEN_MIN_XS,
@@ -138,6 +151,7 @@ var Breakpoint = /*#__PURE__*/Object.freeze({
   SCREEN_MAX_SM: SCREEN_MAX_SM,
   SCREEN_MAX_MD: SCREEN_MAX_MD,
   SCREEN_MAX_LG: SCREEN_MAX_LG,
+  SCREEN_MIN_XS_PX: SCREEN_MIN_XS_PX,
   SCREEN_MIN_SM_PX: SCREEN_MIN_SM_PX,
   SCREEN_MIN_MD_PX: SCREEN_MIN_MD_PX,
   SCREEN_MIN_LG_PX: SCREEN_MIN_LG_PX,
@@ -148,6 +162,13 @@ var Breakpoint = /*#__PURE__*/Object.freeze({
   SCREEN_MAX_LG_PX: SCREEN_MAX_LG_PX
 });
 
+/* 
+BrandColors: Brand or main theme color.
+TypographyColors: text colors.
+BackgroundColors: colors for background.
+Colors: GenericGolors.
+ActionsColors: for actions, errors, messages, ...
+*/
 // Inspired from RADIX 
 var BLACK = 'hsl(0, 0%, 0%)';
 var BLACK_900 = 'hsla(0, 0%, 0%, .9)';
@@ -271,7 +292,85 @@ var Colors = /*#__PURE__*/Object.freeze({
   COLOR_TWITTER: COLOR_TWITTER
 });
 
-var DSV = _objectSpread({}, Breakpoint, Typography, Colors);
+/**
+ * Creates an instance of the Rhythm.
+ *
+ * @param {Integer} level Level of the rhythm.
+ * @param {Bollean} heading is a heading to get paddingTop and marginBottom.
+ */
+
+var getTypographicElement = function getTypographicElement(level, heading) {
+  var rhythmUnit = Math.round(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
+  var fontSizeFactor = Math.pow(RHYTHM_SCALE, level);
+  var fontSize = Math.round(ROOT_FONTSIZE * fontSizeFactor);
+  var unitsInSize = Math.ceil((fontSize + 0.001) / rhythmUnit);
+  var lineHeight = Math.round(rhythmUnit * unitsInSize);
+  var shift = Math.round((lineHeight - fontSize * TYPO_CAP_HEIGHT) / 2);
+  var paddingTop = shift;
+  var marginBottom = (shift > rhythmUnit ? 2 : 1) * rhythmUnit - shift;
+
+  if (heading) {
+    paddingTop += TYPO_HEADER_SPACING_BEFORE * rhythmUnit;
+    marginBottom += TYPO_HEADER_SPACING_AFTER * rhythmUnit;
+  }
+
+  return {
+    fontSize: "".concat(fontSize.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
+    lineHeight: "".concat(lineHeight.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
+    paddingTop: "".concat(paddingTop.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
+    marginBottom: "".concat(marginBottom.toFixed(FIXDIGIT)).concat(TYPO_UNIT)
+  };
+};
+
+var h1 = getTypographicElement(TYPO_SCALE_H1, true);
+var h2 = getTypographicElement(TYPO_SCALE_H2, true);
+var h3 = getTypographicElement(TYPO_SCALE_H3, true);
+var h4 = getTypographicElement(TYPO_SCALE_H4, true);
+var h5 = getTypographicElement(TYPO_SCALE_H5, true);
+var h6 = getTypographicElement(TYPO_SCALE_H6, true);
+var p = getTypographicElement(0, false);
+var CSSFont = {
+  h1: h1,
+  h2: h2,
+  h3: h3,
+  h4: h4,
+  h5: h5,
+  h6: h6,
+  p: p
+};
+
+var CSSFont$1 = /*#__PURE__*/Object.freeze({
+  default: CSSFont
+});
+
+
+
+var BrandColors = /*#__PURE__*/Object.freeze({
+
+});
+
+var ZINDEX_GROUND = 0;
+var ZINDEX_DROPDOWN = 1000;
+var ZINDEX_sticky = 1020;
+var ZINDEX_FIXED = 1030;
+var ZINDEX_MODAL_BACKDROP = 1040;
+var ZINDEX_MODAL = 1050;
+var ZINDEX_POPOVER = 1060;
+var ZINDEX_TOOLTIP = 1070;
+
+var ZIndex = /*#__PURE__*/Object.freeze({
+  ZINDEX_GROUND: ZINDEX_GROUND,
+  ZINDEX_DROPDOWN: ZINDEX_DROPDOWN,
+  ZINDEX_sticky: ZINDEX_sticky,
+  ZINDEX_FIXED: ZINDEX_FIXED,
+  ZINDEX_MODAL_BACKDROP: ZINDEX_MODAL_BACKDROP,
+  ZINDEX_MODAL: ZINDEX_MODAL,
+  ZINDEX_POPOVER: ZINDEX_POPOVER,
+  ZINDEX_TOOLTIP: ZINDEX_TOOLTIP
+});
+
+var DSV = _objectSpread({}, Breakpoint, Typography, Colors, BrandColors, ZIndex);
 
 exports.Rhythm = Rhythm;
+exports.Style = CSSFont$1;
 exports.default = DSV;

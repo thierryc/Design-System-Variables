@@ -1,3 +1,12 @@
+
+/* 
+BrandColors: Brand or main theme color.
+TypographyColors: text colors.
+BackgroundColors: colors for background.
+Colors: GenericGolors.
+ActionsColors: for actions, errors, messages, ...
+*/
+
 // Inspired from RADIX 
 export const BLACK = 'hsl(0, 0%, 0%)';
 export const BLACK_900 = 'hsla(0, 0%, 0%, .9)';

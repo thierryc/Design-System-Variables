@@ -20,9 +20,11 @@ export const TYPO_SCALE_H2 = 3;
 export const TYPO_SCALE_H3 = 2;
 export const TYPO_SCALE_H4 = 1;
 export const TYPO_SCALE_H5 = 0;
-export const TYPO_SCALE_H6 = -1;
+export const TYPO_SCALE_H6 = -0.5;
 
 // Extra header spacing
 export const TYPO_HEADER_SPACING_BEFORE = 1;
 export const TYPO_HEADER_SPACING_AFTER = 0;
+
+export const TYPO_UNIT = 'em';
 

@@ -8,4 +8,3 @@ export const FIBONACCI = 1.618;
 export const MINOR_SEVENTH = 1.778;
 export const MAJOR_SEVENTH = 1.875;
 export const OCTAVE = 2.0;
-
