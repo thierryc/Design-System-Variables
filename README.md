@@ -7,30 +7,34 @@ Low level variables for CSS in JS.
 
 # Masters Variables:
 
+
+
 ## Typography 
 
 * Font Family (Heading and Body)
 * Line height
 
 
-# Typography
+# All Variables:
 
-## Fonts
+## Typography
+
+### Fonts
 
 * 1 heading font (Lora serif font)
 * 1 body font (Nato sans serif font)
 
-## Colors 
+### Colors 
 
 * 4 brand colors
 
-# Grid
+### Grid
 
 The grid is 1/3 of the lineHeight. (~ 8px)
 
-# Layout, Columns, gutters, and margins
+## Layout, Columns, gutters, and margins
 
-## Columns
+### Columns
 
 Content is placed in the areas of the screen that contain columns. 
 Column width is defined using percentages.
@@ -41,7 +45,7 @@ Column width is defined using percentages.
 * COL_NUMB_LG = 12;
 * COL_NUMB_XL = 12;
 
-## Gutters
+### Gutters
 
 Gutters are the spaces between columns. They help separate content. 
 Gutter widths are fixed values at each breakpoint range.
@@ -53,7 +57,7 @@ Gutter widths are fixed values at each breakpoint range.
 * GUTTER_XL = 3 * grid (~24px)
 
 
-## Margins
+### Margins
 
 Margins are the space between content and the left and right edges of the screen.
 
@@ -63,16 +67,16 @@ Margins are the space between content and the left and right edges of the screen
 * MARGIN_LG = 4 * grid (~24px)
 * MARGIN_XL = 4 * grid (~32px)
 
-## How to use
+### How to use
 
 
-# Variables list
+## Variables list
 
 
-##  Create your onw set
+###  Create your onw set
 
 
-## Get Cap height of a font
+### Get Cap height of a font
 
 Video Sketch soon
 
