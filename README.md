@@ -5,6 +5,14 @@ A “ready to use” set of variables for Design System.
 
 Low level variables for CSS in JS.
 
+# Masters Variables:
+
+## Typography 
+
+* Font Family (Heading and Body)
+* Line height
+
+
 # Typography
 
 ## Fonts
