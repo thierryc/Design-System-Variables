@@ -5,9 +5,33 @@ A “ready to use” set of variables for Design System.
 
 Low level variables for CSS in JS.
 
-# Typography
+# Masters Variables:
 
-## Fonts
+
+
+## Typography 
+
+* Font Family (Heading and Body)
+* Line height
+
+## Rhythm Scale
+
+* Rhythm (FIBONACCI)
+
+## BrandColors
+
+## Background Colors
+
+## Main Colors
+
+* Blue Hue
+* Green Hue
+* Yellow Hue
+* Red Hue
+
+# All Variables:
+
+## Typography
 
 * 1 heading font (Lora serif font)
 * 1 body font (Nato sans serif font)
@@ -16,7 +40,7 @@ Low level variables for CSS in JS.
 
 * 4 brand colors
 
-# Grid
+## Grid
 
 The grid is 1/3 of the lineHeight. (~ 8px)
 
@@ -44,7 +68,6 @@ Gutter widths are fixed values at each breakpoint range.
 * GUTTER_LG = 3 * grid (~24px)
 * GUTTER_XL = 3 * grid (~24px)
 
-
 ## Margins
 
 Margins are the space between content and the left and right edges of the screen.
@@ -61,10 +84,10 @@ Margins are the space between content and the left and right edges of the screen
 # Variables list
 
 
-##  Create your onw set
+# Create your onw set
 
 
-## Get Cap height of a font
+# Get Cap height of a font
 
 Video Sketch soon
 
