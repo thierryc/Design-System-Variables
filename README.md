@@ -5,6 +5,23 @@ A “ready to use” set of variables for Design System.
 
 Low level variables for CSS in JS.
 
+## Font
+
+### 2 fonts
+
+* 1 heading font (Lora serif font)
+* 1 body font (Nato sans serif font)
+
+## Brand colors 
+
+* 4 brand colors
+
+# Layout,Columns, gutters, and margins
+
+
+
+
+
 
 ## How to use
 
