@@ -5,9 +5,17 @@ TypographyColors: text colors.
 BackgroundColors: colors for background.
 Colors: GenericGolors.
 ActionsColors: for actions, errors, messages, ...
+ServiceColors: for facebook, twitter and more,
 */
 
 // Inspired from RADIX 
+
+// https://design.lyft.com/re-approaching-color-9e604ba22c88
+
+// https://www.colorbox.io
+
+// https://github.com/lyft/coloralgorithm
+
 export const BLACK = 'hsl(0, 0%, 0%)';
 export const BLACK_900 = 'hsla(0, 0%, 0%, .9)';
 export const BLACK_700 = 'hsla(0, 0%, 0%, .7)';

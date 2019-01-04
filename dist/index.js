@@ -1,6 +1,9 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var chroma = _interopDefault(require('chroma-js'));
+var bezier = _interopDefault(require('bezier-easing'));
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -36,6 +39,44 @@ function _objectSpread(target) {
   return target;
 }
 
+function _slicedToArray(arr, i) {
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+}
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
 // Scale Rhythm
 var MINOR_THIRD = 1.2;
 var MAJOR_THIRD = 1.25;
@@ -46,7 +87,7 @@ var MINOR_SEVENTH = 1.778;
 var MAJOR_SEVENTH = 1.875;
 var OCTAVE = 2.0;
 
-var Rhythm = /*#__PURE__*/Object.freeze({
+var _Rhythm = /*#__PURE__*/Object.freeze({
   MINOR_THIRD: MINOR_THIRD,
   MAJOR_THIRD: MAJOR_THIRD,
   FOURTH: FOURTH,
@@ -62,19 +103,19 @@ var ROOT_FONTSIZE = 16;
 
 var TYPO_FONT_FAMILY_URL = 'https://fonts.googleapis.com/css?family=Lato|Lora:400,700';
 var TYPO_FONT_FAMILY = "'Lora', serif";
-var TYPO_CAP_HEIGHT = 0.7;
+var _TYPO_CAP_HEIGHT = 0.7;
 var TYPO_FONT_FAMILY_BODY = "'Lato', sans-serif";
-var TYPO_CAP_HEIGHT_BODY = 0.725;
+var _TYPO_CAP_HEIGHT_BODY = 0.725;
 var TYPO_BASE_LINE_HEIGHT = 1.6;
 var RHYTHM_SCALE = FIBONACCI;
 var TYPO_BOLD_HEADERS = true; // Scale Rhythm adjustment
 
-var TYPO_SCALE_H1 = 4;
-var TYPO_SCALE_H2 = 3;
-var TYPO_SCALE_H3 = 2;
-var TYPO_SCALE_H4 = 1;
-var TYPO_SCALE_H5 = 0;
-var TYPO_SCALE_H6 = -0.5; // Extra header spacing
+var _TYPO_SCALE_H1 = 4;
+var _TYPO_SCALE_H2 = 3;
+var _TYPO_SCALE_H3 = 2;
+var _TYPO_SCALE_H4 = 1;
+var _TYPO_SCALE_H5 = 0;
+var _TYPO_SCALE_H6 = -0.5; // Extra header spacing
 
 var TYPO_HEADER_SPACING_BEFORE = 1;
 var TYPO_HEADER_SPACING_AFTER = 0;
@@ -84,18 +125,18 @@ var Typography = /*#__PURE__*/Object.freeze({
   ROOT_FONTSIZE: ROOT_FONTSIZE,
   TYPO_FONT_FAMILY_URL: TYPO_FONT_FAMILY_URL,
   TYPO_FONT_FAMILY: TYPO_FONT_FAMILY,
-  TYPO_CAP_HEIGHT: TYPO_CAP_HEIGHT,
+  _TYPO_CAP_HEIGHT: _TYPO_CAP_HEIGHT,
   TYPO_FONT_FAMILY_BODY: TYPO_FONT_FAMILY_BODY,
-  TYPO_CAP_HEIGHT_BODY: TYPO_CAP_HEIGHT_BODY,
+  _TYPO_CAP_HEIGHT_BODY: _TYPO_CAP_HEIGHT_BODY,
   TYPO_BASE_LINE_HEIGHT: TYPO_BASE_LINE_HEIGHT,
   RHYTHM_SCALE: RHYTHM_SCALE,
   TYPO_BOLD_HEADERS: TYPO_BOLD_HEADERS,
-  TYPO_SCALE_H1: TYPO_SCALE_H1,
-  TYPO_SCALE_H2: TYPO_SCALE_H2,
-  TYPO_SCALE_H3: TYPO_SCALE_H3,
-  TYPO_SCALE_H4: TYPO_SCALE_H4,
-  TYPO_SCALE_H5: TYPO_SCALE_H5,
-  TYPO_SCALE_H6: TYPO_SCALE_H6,
+  _TYPO_SCALE_H1: _TYPO_SCALE_H1,
+  _TYPO_SCALE_H2: _TYPO_SCALE_H2,
+  _TYPO_SCALE_H3: _TYPO_SCALE_H3,
+  _TYPO_SCALE_H4: _TYPO_SCALE_H4,
+  _TYPO_SCALE_H5: _TYPO_SCALE_H5,
+  _TYPO_SCALE_H6: _TYPO_SCALE_H6,
   TYPO_HEADER_SPACING_BEFORE: TYPO_HEADER_SPACING_BEFORE,
   TYPO_HEADER_SPACING_AFTER: TYPO_HEADER_SPACING_AFTER,
   TYPO_UNIT: TYPO_UNIT
@@ -110,7 +151,7 @@ var SCREEN_SIZE_MIN_XL = 1920;
 var FIXDIGIT = 3;
 
 var getEmString = function getEmString(val) {
-  return val === 0 ? val : "".concat(val.toFixed(FIXDIGIT), "em");
+  return val.toFixed(FIXDIGIT) == 0 ? 0 : "".concat(val.toFixed(FIXDIGIT), "em");
 };
 var getPxString = function getPxString(val) {
   return val === 0 ? val : "".concat(val.toFixed(0), "px");
@@ -171,8 +212,12 @@ TypographyColors: text colors.
 BackgroundColors: colors for background.
 Colors: GenericGolors.
 ActionsColors: for actions, errors, messages, ...
+ServiceColors: for facebook, twitter and more,
 */
 // Inspired from RADIX 
+// https://design.lyft.com/re-approaching-color-9e604ba22c88
+// https://www.colorbox.io
+// https://github.com/lyft/coloralgorithm
 var BLACK = 'hsl(0, 0%, 0%)';
 var BLACK_900 = 'hsla(0, 0%, 0%, .9)';
 var BLACK_700 = 'hsla(0, 0%, 0%, .7)';
@@ -315,41 +360,254 @@ var getTypographicElement = function getTypographicElement(level, capHeight, fon
     marginBottom += TYPO_HEADER_SPACING_AFTER * TYPO_BASE_LINE_HEIGHT;
   }
 
+  var letterSpacing = Math.pow(RHYTHM_SCALE, level) * 0.004 - 0.003;
   return {
     fontFamily: fontFamily,
-    fontSize: "".concat(fontSize.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
-    lineHeight: "".concat(lineHeight.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
-    paddingTop: "".concat(paddingTop.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
-    marginBottom: "".concat(marginBottom.toFixed(FIXDIGIT)).concat(TYPO_UNIT),
-    '__fontSizeFactor': fontSize
+    fontSize: getEmString(fontSize),
+    lineHeight: getEmString(lineHeight),
+    paddingTop: getEmString(paddingTop),
+    marginBottom: getEmString(marginBottom),
+    letterSpacing: getEmString(letterSpacing),
+    _fontSizeFactor: fontSize,
+    _shift: shift
   };
 };
 
-var h1 = getTypographicElement(TYPO_SCALE_H1, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var h2 = getTypographicElement(TYPO_SCALE_H2, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var h3 = getTypographicElement(TYPO_SCALE_H3, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var h4 = getTypographicElement(TYPO_SCALE_H4, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var h5 = getTypographicElement(TYPO_SCALE_H5, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var h6 = getTypographicElement(TYPO_SCALE_H6, TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var p = getTypographicElement(0, TYPO_CAP_HEIGHT_BODY, TYPO_FONT_FAMILY_BODY, false);
-var CSSFont = {
-  h1: h1,
-  h2: h2,
-  h3: h3,
-  h4: h4,
-  h5: h5,
-  h6: h6,
-  p: p
-};
+var H1 = getTypographicElement(_TYPO_SCALE_H1, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var H2 = getTypographicElement(_TYPO_SCALE_H2, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var H3 = getTypographicElement(_TYPO_SCALE_H3, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var H4 = getTypographicElement(_TYPO_SCALE_H4, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var H5 = getTypographicElement(_TYPO_SCALE_H5, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var H6 = getTypographicElement(_TYPO_SCALE_H6, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
+var P = getTypographicElement(0, _TYPO_CAP_HEIGHT_BODY, TYPO_FONT_FAMILY_BODY, false);
 
-var CSSFont$1 = /*#__PURE__*/Object.freeze({
-  default: CSSFont
+var CSSFont = /*#__PURE__*/Object.freeze({
+  H1: H1,
+  H2: H2,
+  H3: H3,
+  H4: H4,
+  H5: H5,
+  H6: H6,
+  P: P
 });
 
+var linear = bezier(0.5, 0.5, 0.5, 0.5);
+var easeInCubic = bezier(0.55, 0.055, 0.675, 0.19);
+var easeOutCubic = bezier(0.215, 0.61, 0.355, 1);
+var easeInOutCubic = bezier(0.645, 0.045, 0.355, 1);
+var easeInSine = bezier(0.47, 0, 0.745, 0.715);
+var easeOutSine = bezier(0.39, 0.575, 0.565, 1);
+var easeInOutSine = bezier(0.445, 0.05, 0.55, 0.95);
+var easeInQuad = bezier(0.55, 0.085, 0.68, 0.53);
+var easeOutQuad = bezier(0.25, 0.46, 0.45, 0.94);
+var easeInOutQuad = bezier(0.455, 0.03, 0.515, 0.955);
+var easeInQuart = bezier(0.895, 0.03, 0.685, 0.22);
+var easeOutQuart = bezier(0.165, 0.84, 0.44, 1);
+var easeInOutQuart = bezier(0.77, 0, 0.175, 1);
+var easeInCirc = bezier(0.6, 0.04, 0.98, 0.335);
+var easeOutCirc = bezier(0.075, 0.82, 0.165, 1);
+var easeInOutCirc = bezier(0.785, 0.135, 0.15, 0.86);
+var easeInQuint = bezier(0.755, 0.05, 0.855, 0.06);
+var easeOutQuint = bezier(0.23, 1, 0.32, 1);
+var easeInOutQuint = bezier(0.86, 0, 0.07, 1);
+var easeInExpo = bezier(0.95, 0.05, 0.795, 0.035);
+var easeOutExpo = bezier(0.19, 1, 0.22, 1);
+var easeInOutExpo = bezier(1, 0, 0, 1);
+var easeInBack = bezier(0.6, -0.28, 0.735, 0.045);
+var easeOutBack = bezier(0.175, 0.885, 0.32, 1.275);
+var easeInOutBack = bezier(0.68, -0.55, 0.265, 1.55);
 
+var Curves = /*#__PURE__*/Object.freeze({
+  linear: linear,
+  easeInCubic: easeInCubic,
+  easeOutCubic: easeOutCubic,
+  easeInOutCubic: easeInOutCubic,
+  easeInSine: easeInSine,
+  easeOutSine: easeOutSine,
+  easeInOutSine: easeInOutSine,
+  easeInQuad: easeInQuad,
+  easeOutQuad: easeOutQuad,
+  easeInOutQuad: easeInOutQuad,
+  easeInQuart: easeInQuart,
+  easeOutQuart: easeOutQuart,
+  easeInOutQuart: easeInOutQuart,
+  easeInCirc: easeInCirc,
+  easeOutCirc: easeOutCirc,
+  easeInOutCirc: easeInOutCirc,
+  easeInQuint: easeInQuint,
+  easeOutQuint: easeOutQuint,
+  easeInOutQuint: easeInOutQuint,
+  easeInExpo: easeInExpo,
+  easeOutExpo: easeOutExpo,
+  easeInOutExpo: easeInOutExpo,
+  easeInBack: easeInBack,
+  easeOutBack: easeOutBack,
+  easeInOutBack: easeInOutBack
+});
+
+function distribute(value, rangeA, rangeB) {
+  var _Array$from = Array.from(rangeA),
+      _Array$from2 = _slicedToArray(_Array$from, 2),
+      fromLow = _Array$from2[0],
+      fromHigh = _Array$from2[1];
+
+  var _Array$from3 = Array.from(rangeB),
+      _Array$from4 = _slicedToArray(_Array$from3, 2),
+      toLow = _Array$from4[0],
+      toHigh = _Array$from4[1];
+
+  var result = toLow + (value - fromLow) / (fromHigh - fromLow) * (toHigh - toLow);
+
+  if (toLow < toHigh) {
+    if (result < toLow) {
+      return toLow;
+    }
+
+    if (result > toHigh) {
+      return toHigh;
+    }
+  } else {
+    if (result > toLow) {
+      return toLow;
+    }
+
+    if (result < toHigh) {
+      return toHigh;
+    }
+  }
+
+  return result;
+}
+
+function generate (_ref) {
+  var specs = _ref.specs;
+
+  function generateNumberOfSteps(curve, steps) {
+    var array = [];
+
+    for (var step in Array.from(Array(steps).keys())) {
+      var value = curve(step / (steps - 1));
+      array.push(value);
+    }
+
+    array.reverse();
+    return array;
+  }
+
+  var lum_array = generateNumberOfSteps(Curves[specs.lum_curve], specs.steps);
+  var sat_array = generateNumberOfSteps(Curves[specs.sat_curve], specs.steps);
+  var hue_array = generateNumberOfSteps(Curves[specs.hue_curve], specs.steps);
+  var lum_array_adjusted = [];
+  var sat_array_adjusted = [];
+  var hue_array_adjusted = [];
+
+  for (var index in lum_array) {
+    var _step = lum_array[index];
+    lum_array_adjusted.push(distribute(_step, [0, 1], [specs.lum_end * .01, specs.lum_start * .01], true));
+  }
+
+  for (var index in sat_array) {
+    var _step2 = sat_array[index];
+    var sat_step = distribute(_step2, [0, 1], [specs.sat_start * .01, specs.sat_end * .01], true);
+    sat_step = sat_step * (specs.sat_rate * .01);
+    sat_array_adjusted.push(sat_step);
+  }
+
+  for (var index in hue_array) {
+    var _step3 = hue_array[index];
+    hue_array_adjusted.push(distribute(_step3, [0, 1], [specs.hue_start, specs.hue_end]));
+  }
+
+  sat_array_adjusted.reverse();
+  hue_array_adjusted.reverse();
+  lum_array = lum_array_adjusted;
+  sat_array = sat_array_adjusted;
+  hue_array = hue_array_adjusted;
+  var colorMap = [];
+
+  for (var index in lum_array) {
+    var step = lum_array[index];
+    var params = {
+      hue: hue_array[index],
+      saturation: sat_array[index],
+      luminosity: lum_array[index]
+    };
+
+    if (params.saturation > 1) {
+      params.saturation = 1;
+    }
+
+    var hex = chroma(chroma.hsv([params.hue, params.saturation, params.luminosity]));
+    var hexRGB = chroma(chroma.hsv([params.hue, params.saturation, params.luminosity])).rgb();
+    var contrastWhite = chroma.contrast(hex, "white").toFixed(2);
+    var contrastBlack = chroma.contrast(hex, "black").toFixed(2);
+    var displayColor = "";
+
+    if (contrastWhite >= 4.5) {
+      displayColor = "white";
+    } else {
+      displayColor = "black";
+    }
+
+    var colorObj = {
+      hex: chroma(hex).hex(),
+      hue: chroma(hex).hsv()[0],
+      sat: chroma(hex).hsv()[1],
+      lum: chroma(hex).hsv()[2],
+      hsv: chroma(hex).hsv(),
+      hsl: chroma(hex).hsl(),
+      rgb: chroma(hex).rgb(),
+      hueRange: [specs.hue_start, specs.hue_end],
+      steps: specs.steps,
+      label: specs.modifier * index,
+      contrastBlack: contrastBlack,
+      contrastWhite: contrastWhite,
+      displayColor: displayColor
+    };
+    colorMap.push(colorObj);
+  }
+
+  return colorMap;
+}
+
+var brandColorScheme_one = {
+  specs: {
+    // Number of colors
+    steps: 11,
+    // Hue Start Value (0 - 359)
+    hue_start: 315,
+    // Hue End Value (0 - 359)
+    hue_end: 293,
+    // Hue Curve (See Curves Section)
+    hue_curve: "easeInQuad",
+    // Saturation Start Value (0 - 100)
+    sat_start: 4,
+    // Saturation End Value (0 - 100)
+    sat_end: 90,
+    // Saturation Curve (See Curves Section)
+    sat_curve: "easeOutQuad",
+    // Saturation Rate (0 - 200)
+    sat_rate: 130,
+    // Luminosity Start Value (0 - 100)
+    lum_start: 100,
+    // Luminosity End Value (0 - 100)
+    lum_end: 53,
+    // Luminosity Curve (See Curves Section)
+    lum_curve: "easeOutQuad",
+    // Modifier Scale
+    // Every generated color gets a modifier (label) that
+    // indicates its lightness. A value of 10 results in
+    // two-digit modifiers. The lightest color will be 0 (e.g. Red 0)
+    // and the darkest color will be 100 (e.g. Red 100), given
+    // that you generate 11 colors
+    modifier: 10
+  }
+};
+var colorArray = generate(brandColorScheme_one);
+var _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT = colorArray;
 
 var BrandColors = /*#__PURE__*/Object.freeze({
-
+  _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT: _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT
 });
 
 var grid = TYPO_BASE_LINE_HEIGHT / 3;
@@ -384,7 +642,7 @@ var Margin = /*#__PURE__*/Object.freeze({
 
 var ZINDEX_GROUND = 0;
 var ZINDEX_DROPDOWN = 1000;
-var ZINDEX_sticky = 1020;
+var ZINDEX_STICKY = 1020;
 var ZINDEX_FIXED = 1030;
 var ZINDEX_MODAL_BACKDROP = 1040;
 var ZINDEX_MODAL = 1050;
@@ -394,7 +652,7 @@ var ZINDEX_TOOLTIP = 1070;
 var ZIndex = /*#__PURE__*/Object.freeze({
   ZINDEX_GROUND: ZINDEX_GROUND,
   ZINDEX_DROPDOWN: ZINDEX_DROPDOWN,
-  ZINDEX_sticky: ZINDEX_sticky,
+  ZINDEX_STICKY: ZINDEX_STICKY,
   ZINDEX_FIXED: ZINDEX_FIXED,
   ZINDEX_MODAL_BACKDROP: ZINDEX_MODAL_BACKDROP,
   ZINDEX_MODAL: ZINDEX_MODAL,
@@ -402,8 +660,8 @@ var ZIndex = /*#__PURE__*/Object.freeze({
   ZINDEX_TOOLTIP: ZINDEX_TOOLTIP
 });
 
-var DSV = _objectSpread({}, Breakpoint, Typography, Colors, BrandColors, Gutter, Margin, ZIndex);
+var DSV = _objectSpread({}, Breakpoint, Typography, Colors, Gutter, Margin, ZIndex, CSSFont, BrandColors, {
+  _Rhythm: _Rhythm
+});
 
-exports.Rhythm = Rhythm;
-exports.Style = CSSFont$1;
-exports.default = DSV;
+module.exports = DSV;

@@ -19,6 +19,8 @@
     "deploy": "gh-pages -d gh-pages/build"
   },
   "dependencies": {
+    "bezier-easing": "^2.1.0",
+    "chroma-js": "^2.0.2",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
