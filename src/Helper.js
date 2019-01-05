@@ -1,5 +1,12 @@
 import { FIXDIGIT } from './Constant' 
-import { ROOT_FONTSIZE } from './Typography'
+import { 
+  ROOT_FONTSIZE, 
+  TYPO_BASE_LINE_HEIGHT, 
+  RHYTHM_SCALE,
+  LETTER_SPACING_SCALE,
+  TYPO_BOLD_HEADERS,
+  TYPO_UNIT
+} from './Typography'
 
 export const getEmString = (val) => (val.toFixed(FIXDIGIT) == 0) ? 0 : `${val.toFixed(FIXDIGIT)}em`;
 export const getRemString = (val) => (val.toFixed(FIXDIGIT) == 0) ? 0 : `${val.toFixed(FIXDIGIT)}rem`;
@@ -37,12 +44,12 @@ export const getTypographicElement = ({
 
   // get pixel size
   // use Math.floor to get consitent result.
-  const grid = Math.floor(cfg.ROOT_FONTSIZE * cfg.TYPO_BASE_LINE_HEIGHT);
+  const grid = Math.floor(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
 
-  const fontSizePx = Math.pow( cfg.RHYTHM_SCALE, level ) * cfg.ROOT_FONTSIZE;
+  const fontSizePx = Math.pow( RHYTHM_SCALE, level ) * ROOT_FONTSIZE;
   
   // conpute the better line height for the font size
-  const lineHeightPx = Math.round((fontSizePx * cfg.TYPO_BASE_LINE_HEIGHT) / grid) * grid;
+  const lineHeightPx = Math.round((fontSizePx * TYPO_BASE_LINE_HEIGHT) / grid) * grid;
 
   const capHeightPx = fontSizePx * capHeight;
   // align the baseline on the grid.
@@ -56,20 +63,20 @@ export const getTypographicElement = ({
     marginBottom += after * grid;
   }
 
-  const letterSpacing = (Math.pow( cfg.RHYTHM_SCALE, level) * cfg.LETTER_SPACING_SCALE * -1) + cfg.LETTER_SPACING_SCALE;
+  const letterSpacing = (Math.pow( RHYTHM_SCALE, level) * LETTER_SPACING_SCALE * -1) + LETTER_SPACING_SCALE;
   
   if (fontWeight === null) {
-    fontWeight = (!cfg.TYPO_BOLD_HEADERS) ? 400 : null;
+    fontWeight = (!TYPO_BOLD_HEADERS) ? 400 : null;
   }
   
   return {
     fontFamily,
-    fontSize: getStringFromPx(fontSizePx, cfg.TYPO_UNIT, cfg.ROOT_FONTSIZE), // 
-    lineHeight: getStringFromPx(lineHeightPx, cfg.TYPO_UNIT, fontSizePx),
-    paddingTop: getStringFromPx(paddingTop, cfg.TYPO_UNIT, fontSizePx),
+    fontSize: getStringFromPx(fontSizePx, TYPO_UNIT, ROOT_FONTSIZE), // 
+    lineHeight: getStringFromPx(lineHeightPx, TYPO_UNIT, fontSizePx),
+    paddingTop: getStringFromPx(paddingTop, TYPO_UNIT, fontSizePx),
     marginTop: 0,
     fontWeight,
-    marginBottom: getStringFromPx(marginBottom, cfg.TYPO_UNIT, fontSizePx),
+    marginBottom: getStringFromPx(marginBottom, TYPO_UNIT, fontSizePx),
     letterSpacing: getEmString(letterSpacing),
     _shift: shift,
   }

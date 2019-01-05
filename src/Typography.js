@@ -18,7 +18,7 @@ export const LETTER_SPACING_SCALE = 0.006;
 
 export const RHYTHM_SCALE = FIBONACCI;
 
-export const TYPO_BOLD_HEADERS = false;
+export const TYPO_BOLD_HEADERS = true;
 
 // Scale Rhythm adjustment
 // H1

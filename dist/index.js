@@ -111,7 +111,7 @@ var _TYPO_CAP_HEIGHT_BODY = 0.725;
 var TYPO_BASE_LINE_HEIGHT = 1.6;
 var LETTER_SPACING_SCALE = 0.006;
 var RHYTHM_SCALE = FIBONACCI;
-var TYPO_BOLD_HEADERS = false; // Scale Rhythm adjustment
+var TYPO_BOLD_HEADERS = true; // Scale Rhythm adjustment
 // H1
 
 var _TYPO_H1_SCALE = 3;
@@ -233,10 +233,10 @@ var getTypographicElement = function getTypographicElement(_ref) {
       after = _ref$after === void 0 ? 0 : _ref$after;
   // get pixel size
   // use Math.floor to get consitent result.
-  var grid = Math.floor(cfg.ROOT_FONTSIZE * cfg.TYPO_BASE_LINE_HEIGHT);
-  var fontSizePx = Math.pow(cfg.RHYTHM_SCALE, level) * cfg.ROOT_FONTSIZE; // conpute the better line height for the font size
+  var grid = Math.floor(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
+  var fontSizePx = Math.pow(RHYTHM_SCALE, level) * ROOT_FONTSIZE; // conpute the better line height for the font size
 
-  var lineHeightPx = Math.round(fontSizePx * cfg.TYPO_BASE_LINE_HEIGHT / grid) * grid;
+  var lineHeightPx = Math.round(fontSizePx * TYPO_BASE_LINE_HEIGHT / grid) * grid;
 
   var shift = Math.round((lineHeightPx - fontSizePx * capHeight) / 2); //const marginTop = Math.ceil();
 
@@ -247,21 +247,21 @@ var getTypographicElement = function getTypographicElement(_ref) {
     marginBottom += after * grid;
   }
 
-  var letterSpacing = Math.pow(cfg.RHYTHM_SCALE, level) * cfg.LETTER_SPACING_SCALE * -1 + cfg.LETTER_SPACING_SCALE;
+  var letterSpacing = Math.pow(RHYTHM_SCALE, level) * LETTER_SPACING_SCALE * -1 + LETTER_SPACING_SCALE;
 
   if (fontWeight === null) {
-    fontWeight = !cfg.TYPO_BOLD_HEADERS ? 400 : null;
+    fontWeight = null;
   }
 
   return {
     fontFamily: fontFamily,
-    fontSize: getStringFromPx(fontSizePx, cfg.TYPO_UNIT, cfg.ROOT_FONTSIZE),
+    fontSize: getStringFromPx(fontSizePx, TYPO_UNIT, ROOT_FONTSIZE),
     // 
-    lineHeight: getStringFromPx(lineHeightPx, cfg.TYPO_UNIT, fontSizePx),
-    paddingTop: getStringFromPx(paddingTop, cfg.TYPO_UNIT, fontSizePx),
+    lineHeight: getStringFromPx(lineHeightPx, TYPO_UNIT, fontSizePx),
+    paddingTop: getStringFromPx(paddingTop, TYPO_UNIT, fontSizePx),
     marginTop: 0,
     fontWeight: fontWeight,
-    marginBottom: getStringFromPx(marginBottom, cfg.TYPO_UNIT, fontSizePx),
+    marginBottom: getStringFromPx(marginBottom, TYPO_UNIT, fontSizePx),
     letterSpacing: getEmString(letterSpacing),
     _shift: shift
   };
