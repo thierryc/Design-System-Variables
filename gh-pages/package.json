@@ -2,10 +2,12 @@
   "name": "gh-pages",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://thierryc.github.io/Design-System-Variables/",
   "dependencies": {
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "design-system-variables": "file:../"
   },
   "scripts": {
     "start": "react-scripts start",

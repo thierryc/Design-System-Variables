@@ -95,6 +95,8 @@ var _Rhythm = /*#__PURE__*/Object.freeze({
 });
 
 var ROOT_FONTSIZE = 16;
+var TYPO_DEFAULT_FONTSIZE = 1; //em
+
 /* Edit your font  */
 
 var TYPO_FONT_FAMILY_URL = 'https://fonts.googleapis.com/css?family=Lato|Lora:400,700';
@@ -103,38 +105,73 @@ var _TYPO_CAP_HEIGHT = 0.7;
 var TYPO_FONT_FAMILY_BODY = "'Lato', sans-serif";
 var _TYPO_CAP_HEIGHT_BODY = 0.725;
 var TYPO_BASE_LINE_HEIGHT = 1.6;
+var LETTER_SPACING_SCALE = 0.006;
 var RHYTHM_SCALE = FIBONACCI;
 var TYPO_BOLD_HEADERS = true; // Scale Rhythm adjustment
+// H1
 
-var _TYPO_SCALE_H1 = 4;
-var _TYPO_SCALE_H2 = 3;
-var _TYPO_SCALE_H3 = 2;
-var _TYPO_SCALE_H4 = 1;
-var _TYPO_SCALE_H5 = 0;
-var _TYPO_SCALE_H6 = -0.5; // Extra header spacing
+var _TYPO_H1_SCALE = 3;
+var _TYPO_H1_SPACING_BEFORE = 1;
+var _TYPO_H1_SPACING_AFTER = 1; // H2
 
-var TYPO_HEADER_SPACING_BEFORE = 1;
-var TYPO_HEADER_SPACING_AFTER = 0;
+var _TYPO_H2_SCALE = 2;
+var _TYPO_H2_SPACING_BEFORE = 1;
+var _TYPO_H2_SPACING_AFTER = 0; // H3
+
+var _TYPO_H3_SCALE = 1;
+var _TYPO_H3_SPACING_BEFORE = 1;
+var _TYPO_H3_SPACING_AFTER = 0; // H4
+
+var _TYPO_H4_SCALE = 0;
+var _TYPO_H4_SPACING_BEFORE = 1;
+var _TYPO_H4_SPACING_AFTER = 0; // H5
+
+var _TYPO_H5_SCALE = -0.5;
+var _TYPO_H5_SPACING_BEFORE = 0;
+var _TYPO_H5_SPACING_AFTER = 0; // H6
+
+var _TYPO_H6_SCALE = -1;
+var _TYPO_H6_SPACING_BEFORE = 0;
+var _TYPO_H6_SPACING_AFTER = 0; // P
+
+var _TYPO_P_SCALE = 0;
+var _TYPO_P_SPACING_BEFORE = 0;
+var _TYPO_P_SPACING_AFTER = 0;
 var TYPO_UNIT = 'em';
 
-var Typography = /*#__PURE__*/Object.freeze({
+var cfg = /*#__PURE__*/Object.freeze({
   ROOT_FONTSIZE: ROOT_FONTSIZE,
+  TYPO_DEFAULT_FONTSIZE: TYPO_DEFAULT_FONTSIZE,
   TYPO_FONT_FAMILY_URL: TYPO_FONT_FAMILY_URL,
   TYPO_FONT_FAMILY: TYPO_FONT_FAMILY,
   _TYPO_CAP_HEIGHT: _TYPO_CAP_HEIGHT,
   TYPO_FONT_FAMILY_BODY: TYPO_FONT_FAMILY_BODY,
   _TYPO_CAP_HEIGHT_BODY: _TYPO_CAP_HEIGHT_BODY,
   TYPO_BASE_LINE_HEIGHT: TYPO_BASE_LINE_HEIGHT,
+  LETTER_SPACING_SCALE: LETTER_SPACING_SCALE,
   RHYTHM_SCALE: RHYTHM_SCALE,
   TYPO_BOLD_HEADERS: TYPO_BOLD_HEADERS,
-  _TYPO_SCALE_H1: _TYPO_SCALE_H1,
-  _TYPO_SCALE_H2: _TYPO_SCALE_H2,
-  _TYPO_SCALE_H3: _TYPO_SCALE_H3,
-  _TYPO_SCALE_H4: _TYPO_SCALE_H4,
-  _TYPO_SCALE_H5: _TYPO_SCALE_H5,
-  _TYPO_SCALE_H6: _TYPO_SCALE_H6,
-  TYPO_HEADER_SPACING_BEFORE: TYPO_HEADER_SPACING_BEFORE,
-  TYPO_HEADER_SPACING_AFTER: TYPO_HEADER_SPACING_AFTER,
+  _TYPO_H1_SCALE: _TYPO_H1_SCALE,
+  _TYPO_H1_SPACING_BEFORE: _TYPO_H1_SPACING_BEFORE,
+  _TYPO_H1_SPACING_AFTER: _TYPO_H1_SPACING_AFTER,
+  _TYPO_H2_SCALE: _TYPO_H2_SCALE,
+  _TYPO_H2_SPACING_BEFORE: _TYPO_H2_SPACING_BEFORE,
+  _TYPO_H2_SPACING_AFTER: _TYPO_H2_SPACING_AFTER,
+  _TYPO_H3_SCALE: _TYPO_H3_SCALE,
+  _TYPO_H3_SPACING_BEFORE: _TYPO_H3_SPACING_BEFORE,
+  _TYPO_H3_SPACING_AFTER: _TYPO_H3_SPACING_AFTER,
+  _TYPO_H4_SCALE: _TYPO_H4_SCALE,
+  _TYPO_H4_SPACING_BEFORE: _TYPO_H4_SPACING_BEFORE,
+  _TYPO_H4_SPACING_AFTER: _TYPO_H4_SPACING_AFTER,
+  _TYPO_H5_SCALE: _TYPO_H5_SCALE,
+  _TYPO_H5_SPACING_BEFORE: _TYPO_H5_SPACING_BEFORE,
+  _TYPO_H5_SPACING_AFTER: _TYPO_H5_SPACING_AFTER,
+  _TYPO_H6_SCALE: _TYPO_H6_SCALE,
+  _TYPO_H6_SPACING_BEFORE: _TYPO_H6_SPACING_BEFORE,
+  _TYPO_H6_SPACING_AFTER: _TYPO_H6_SPACING_AFTER,
+  _TYPO_P_SCALE: _TYPO_P_SCALE,
+  _TYPO_P_SPACING_BEFORE: _TYPO_P_SPACING_BEFORE,
+  _TYPO_P_SPACING_AFTER: _TYPO_P_SPACING_AFTER,
   TYPO_UNIT: TYPO_UNIT
 });
 
@@ -337,45 +374,106 @@ var Colors = /*#__PURE__*/Object.freeze({
 });
 
 /**
- * Creates an instance of the Rhythm.
- *
+ * Use pixels to compute the font size em and rem are not consistent.
  * @param {Integer} level Level of the rhythm.
- * @param {Bollean} heading is a heading to get paddingTop and marginBottom.
+ * @param {Integer} capHeight Level of the rhythm.
+ * @param {Integer} fontFamily Level of the rhythm.
+ * @param {Integer} before 
+ * @param {Integer} after 
  */
 
-var getTypographicElement = function getTypographicElement(level, capHeight, fontFamily) {
-  var heading = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-  var fontSize = Math.pow(RHYTHM_SCALE, level);
-  var lineHeight = TYPO_BASE_LINE_HEIGHT * fontSize;
-  var shift = (lineHeight - fontSize * capHeight) / 2;
-  var paddingTop = shift;
-  var marginBottom = (shift > TYPO_BASE_LINE_HEIGHT ? 2 : 1) * TYPO_BASE_LINE_HEIGHT - shift;
+var getTypographicElement = function getTypographicElement(_ref) {
+  var level = _ref.level,
+      capHeight = _ref.capHeight,
+      fontFamily = _ref.fontFamily,
+      _ref$before = _ref.before,
+      before = _ref$before === void 0 ? 0 : _ref$before,
+      _ref$after = _ref.after,
+      after = _ref$after === void 0 ? 0 : _ref$after;
+  // get pixel size
+  // use Math.floor to get consitent result.
+  var grid = Math.floor(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
+  var fontSizePx = Math.pow(RHYTHM_SCALE, level) * ROOT_FONTSIZE; // conpute the better line height for the font size
 
-  if (heading) {
-    paddingTop += TYPO_HEADER_SPACING_BEFORE * TYPO_BASE_LINE_HEIGHT;
-    marginBottom += TYPO_HEADER_SPACING_AFTER * TYPO_BASE_LINE_HEIGHT;
+  var lineHeightPx = Math.round(fontSizePx * TYPO_BASE_LINE_HEIGHT / grid) * grid;
+
+  var shift = Math.round((lineHeightPx - fontSizePx * capHeight) / 2); //const marginTop = Math.ceil();
+
+  var paddingTop = before > 0 ? before * grid + shift : shift;
+  var marginBottom = shift > grid ? grid - shift : shift * -1;
+
+  if (after) {
+    marginBottom += after * grid;
   }
+  /*
+  let paddingTop = 0;
+  let marginBottom = 0;
+  
+  */
 
-  var letterSpacing = Math.pow(RHYTHM_SCALE, level) * 0.004 - 0.003;
+
+  var letterSpacing = Math.pow(RHYTHM_SCALE, level) * LETTER_SPACING_SCALE * -1 + LETTER_SPACING_SCALE;
   return {
     fontFamily: fontFamily,
-    fontSize: getEmString(fontSize),
-    lineHeight: getEmString(lineHeight),
-    paddingTop: getEmString(paddingTop),
-    marginBottom: getEmString(marginBottom),
+    fontSize: "".concat(fontSizePx, "px"),
+    lineHeight: "".concat(lineHeightPx, "px"),
+    paddingTop: "".concat(paddingTop, "px"),
+    marginTop: 0,
+    marginBottom: "".concat(marginBottom, "px"),
     letterSpacing: getEmString(letterSpacing),
-    _fontSizeFactor: fontSize,
     _shift: shift
   };
 };
 
-var H1 = getTypographicElement(_TYPO_SCALE_H1, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var H2 = getTypographicElement(_TYPO_SCALE_H2, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var H3 = getTypographicElement(_TYPO_SCALE_H3, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var H4 = getTypographicElement(_TYPO_SCALE_H4, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var H5 = getTypographicElement(_TYPO_SCALE_H5, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var H6 = getTypographicElement(_TYPO_SCALE_H6, _TYPO_CAP_HEIGHT, TYPO_FONT_FAMILY, true);
-var P = getTypographicElement(0, _TYPO_CAP_HEIGHT_BODY, TYPO_FONT_FAMILY_BODY, false);
+var H1 = getTypographicElement({
+  level: _TYPO_H1_SCALE,
+  capHeight: _TYPO_CAP_HEIGHT,
+  fontFamily: TYPO_FONT_FAMILY,
+  before: _TYPO_H1_SPACING_BEFORE,
+  after: _TYPO_H1_SPACING_AFTER
+});
+var H2 = getTypographicElement({
+  level: _TYPO_H2_SCALE,
+  capHeight: _TYPO_CAP_HEIGHT,
+  fontFamily: TYPO_FONT_FAMILY,
+  before: _TYPO_H2_SPACING_BEFORE,
+  after: _TYPO_H2_SPACING_AFTER
+});
+var H3 = getTypographicElement({
+  level: _TYPO_H3_SCALE,
+  capHeight: _TYPO_CAP_HEIGHT,
+  fontFamily: TYPO_FONT_FAMILY,
+  before: _TYPO_H3_SPACING_BEFORE,
+  after: _TYPO_H3_SPACING_AFTER
+});
+var H4 = getTypographicElement({
+  level: _TYPO_H4_SCALE,
+  capHeight: _TYPO_CAP_HEIGHT,
+  fontFamily: TYPO_FONT_FAMILY,
+  before: _TYPO_H4_SPACING_BEFORE,
+  after: undefined
+});
+var H5 = getTypographicElement({
+  level: _TYPO_H5_SCALE,
+  capHeight: _TYPO_CAP_HEIGHT,
+  fontFamily: TYPO_FONT_FAMILY,
+  before: _TYPO_H5_SPACING_BEFORE,
+  after: _TYPO_H5_SPACING_AFTER
+});
+var H6 = getTypographicElement({
+  level: _TYPO_H6_SCALE,
+  capHeight: _TYPO_CAP_HEIGHT,
+  fontFamily: TYPO_FONT_FAMILY,
+  before: _TYPO_H6_SPACING_BEFORE,
+  after: _TYPO_H6_SPACING_AFTER
+});
+var P = getTypographicElement({
+  level: _TYPO_P_SCALE,
+  capHeight: _TYPO_CAP_HEIGHT_BODY,
+  fontFamily: TYPO_FONT_FAMILY_BODY,
+  before: _TYPO_P_SPACING_BEFORE,
+  after: _TYPO_P_SPACING_AFTER
+});
 
 var CSSFont = /*#__PURE__*/Object.freeze({
   H1: H1,
@@ -656,7 +754,7 @@ var ZIndex = /*#__PURE__*/Object.freeze({
   ZINDEX_TOOLTIP: ZINDEX_TOOLTIP
 });
 
-var DSV = _objectSpread({}, Breakpoint, Typography, Colors, Gutter, Margin, ZIndex, CSSFont, BrandColors, {
+var DSV = _objectSpread({}, Breakpoint, cfg, Colors, Gutter, Margin, ZIndex, CSSFont, BrandColors, {
   _Rhythm: _Rhythm
 });
 
