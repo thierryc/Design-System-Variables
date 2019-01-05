@@ -111,7 +111,7 @@ var _TYPO_CAP_HEIGHT_BODY = 0.725;
 var TYPO_BASE_LINE_HEIGHT = 1.6;
 var LETTER_SPACING_SCALE = 0.006;
 var RHYTHM_SCALE = FIBONACCI;
-var TYPO_BOLD_HEADERS = true; // Scale Rhythm adjustment
+var TYPO_BOLD_HEADERS = false; // Scale Rhythm adjustment
 // H1
 
 var _TYPO_H1_SCALE = 3;
@@ -120,30 +120,30 @@ var _TYPO_H1_SPACING_AFTER = 1; // H2
 
 var _TYPO_H2_SCALE = 2;
 var _TYPO_H2_SPACING_BEFORE = 1;
-var _TYPO_H2_SPACING_AFTER = 0; // H3
+var _TYPO_H2_SPACING_AFTER = 1; // H3
 
 var _TYPO_H3_SCALE = 1;
 var _TYPO_H3_SPACING_BEFORE = 1;
-var _TYPO_H3_SPACING_AFTER = 0; // H4
+var _TYPO_H3_SPACING_AFTER = 1; // H4
 
 var _TYPO_H4_SCALE = 0;
 var _TYPO_H4_SPACING_BEFORE = 1;
-var _TYPO_H4_SPACING_AFTER = 0; // H5
+var _TYPO_H4_SPACING_AFTER = 1; // H5
 
 var _TYPO_H5_SCALE = -0.5;
-var _TYPO_H5_SPACING_BEFORE = 0;
-var _TYPO_H5_SPACING_AFTER = 0; // H6
+var _TYPO_H5_SPACING_BEFORE = 1;
+var _TYPO_H5_SPACING_AFTER = 1; // H6
 
 var _TYPO_H6_SCALE = -1;
-var _TYPO_H6_SPACING_BEFORE = 0;
-var _TYPO_H6_SPACING_AFTER = 0; // P
+var _TYPO_H6_SPACING_BEFORE = 1;
+var _TYPO_H6_SPACING_AFTER = 1; // P
 
 var _TYPO_P_SCALE = 0;
 var _TYPO_P_SPACING_BEFORE = 0;
 var _TYPO_P_SPACING_AFTER = 0;
 var TYPO_UNIT = 'em';
 
-var cfg = /*#__PURE__*/Object.freeze({
+var Typography = /*#__PURE__*/Object.freeze({
   ROOT_FONTSIZE: ROOT_FONTSIZE,
   TYPO_DEFAULT_FONTSIZE: TYPO_DEFAULT_FONTSIZE,
   TYPO_FONT_FAMILY_URL: TYPO_FONT_FAMILY_URL,
@@ -190,8 +190,81 @@ var FIXDIGIT = 3;
 var getEmString = function getEmString(val) {
   return val.toFixed(FIXDIGIT) == 0 ? 0 : "".concat(val.toFixed(FIXDIGIT), "em");
 };
+var getRemString = function getRemString(val) {
+  return val.toFixed(FIXDIGIT) == 0 ? 0 : "".concat(val.toFixed(FIXDIGIT), "rem");
+};
 var getPxString = function getPxString(val) {
   return val === 0 ? val : "".concat(val.toFixed(0), "px");
+};
+var getStringFromPx = function getStringFromPx(val) {
+  var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'px';
+  var fontSize = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ROOT_FONTSIZE;
+
+  switch (unit) {
+    case 'em':
+      return getEmString(val / fontSize);
+
+    case 'rem':
+      return getRemString(val / ROOT_FONTSIZE);
+
+    case 'px':
+    default:
+      return getPxString(val);
+  }
+};
+/**
+ * Use pixels to compute the font size em and rem are not consistent.
+ * @param {Integer} level Level of the rhythm.
+ * @param {Integer} capHeight Level of the rhythm.
+ * @param {Integer} fontFamily Level of the rhythm.
+ * @param {Integer} before 
+ * @param {Integer} after 
+ */
+
+var getTypographicElement = function getTypographicElement(_ref) {
+  var level = _ref.level,
+      capHeight = _ref.capHeight,
+      fontFamily = _ref.fontFamily,
+      _ref$fontWeight = _ref.fontWeight,
+      fontWeight = _ref$fontWeight === void 0 ? null : _ref$fontWeight,
+      _ref$before = _ref.before,
+      before = _ref$before === void 0 ? 0 : _ref$before,
+      _ref$after = _ref.after,
+      after = _ref$after === void 0 ? 0 : _ref$after;
+  // get pixel size
+  // use Math.floor to get consitent result.
+  var grid = Math.floor(cfg.ROOT_FONTSIZE * cfg.TYPO_BASE_LINE_HEIGHT);
+  var fontSizePx = Math.pow(cfg.RHYTHM_SCALE, level) * cfg.ROOT_FONTSIZE; // conpute the better line height for the font size
+
+  var lineHeightPx = Math.round(fontSizePx * cfg.TYPO_BASE_LINE_HEIGHT / grid) * grid;
+
+  var shift = Math.round((lineHeightPx - fontSizePx * capHeight) / 2); //const marginTop = Math.ceil();
+
+  var paddingTop = before > 0 ? before * grid + shift : shift;
+  var marginBottom = shift > grid ? grid - shift : shift * -1;
+
+  if (after) {
+    marginBottom += after * grid;
+  }
+
+  var letterSpacing = Math.pow(cfg.RHYTHM_SCALE, level) * cfg.LETTER_SPACING_SCALE * -1 + cfg.LETTER_SPACING_SCALE;
+
+  if (fontWeight === null) {
+    fontWeight = !cfg.TYPO_BOLD_HEADERS ? 400 : null;
+  }
+
+  return {
+    fontFamily: fontFamily,
+    fontSize: getStringFromPx(fontSizePx, cfg.TYPO_UNIT, cfg.ROOT_FONTSIZE),
+    // 
+    lineHeight: getStringFromPx(lineHeightPx, cfg.TYPO_UNIT, fontSizePx),
+    paddingTop: getStringFromPx(paddingTop, cfg.TYPO_UNIT, fontSizePx),
+    marginTop: 0,
+    fontWeight: fontWeight,
+    marginBottom: getStringFromPx(marginBottom, cfg.TYPO_UNIT, fontSizePx),
+    letterSpacing: getEmString(letterSpacing),
+    _shift: shift
+  };
 };
 
 var SCREEN_XS = SCREEN_SIZE_MIN_XS / ROOT_FONTSIZE; // Extra small screen / phone
@@ -377,58 +450,6 @@ var Colors = /*#__PURE__*/Object.freeze({
   COLOR_TWITTER: COLOR_TWITTER
 });
 
-/**
- * Use pixels to compute the font size em and rem are not consistent.
- * @param {Integer} level Level of the rhythm.
- * @param {Integer} capHeight Level of the rhythm.
- * @param {Integer} fontFamily Level of the rhythm.
- * @param {Integer} before 
- * @param {Integer} after 
- */
-
-var getTypographicElement = function getTypographicElement(_ref) {
-  var level = _ref.level,
-      capHeight = _ref.capHeight,
-      fontFamily = _ref.fontFamily,
-      _ref$before = _ref.before,
-      before = _ref$before === void 0 ? 0 : _ref$before,
-      _ref$after = _ref.after,
-      after = _ref$after === void 0 ? 0 : _ref$after;
-  // get pixel size
-  // use Math.floor to get consitent result.
-  var grid = Math.floor(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
-  var fontSizePx = Math.pow(RHYTHM_SCALE, level) * ROOT_FONTSIZE; // conpute the better line height for the font size
-
-  var lineHeightPx = Math.round(fontSizePx * TYPO_BASE_LINE_HEIGHT / grid) * grid;
-
-  var shift = Math.round((lineHeightPx - fontSizePx * capHeight) / 2); //const marginTop = Math.ceil();
-
-  var paddingTop = before > 0 ? before * grid + shift : shift;
-  var marginBottom = shift > grid ? grid - shift : shift * -1;
-
-  if (after) {
-    marginBottom += after * grid;
-  }
-  /*
-  let paddingTop = 0;
-  let marginBottom = 0;
-  
-  */
-
-
-  var letterSpacing = Math.pow(RHYTHM_SCALE, level) * LETTER_SPACING_SCALE * -1 + LETTER_SPACING_SCALE;
-  return {
-    fontFamily: fontFamily,
-    fontSize: "".concat(fontSizePx, "px"),
-    lineHeight: "".concat(lineHeightPx, "px"),
-    paddingTop: "".concat(paddingTop, "px"),
-    marginTop: 0,
-    marginBottom: "".concat(marginBottom, "px"),
-    letterSpacing: getEmString(letterSpacing),
-    _shift: shift
-  };
-};
-
 var H1 = getTypographicElement({
   level: _TYPO_H1_SCALE,
   capHeight: _TYPO_CAP_HEIGHT,
@@ -455,7 +476,7 @@ var H4 = getTypographicElement({
   capHeight: _TYPO_CAP_HEIGHT,
   fontFamily: TYPO_FONT_FAMILY,
   before: _TYPO_H4_SPACING_BEFORE,
-  after: undefined
+  after: _TYPO_H4_SPACING_AFTER
 });
 var H5 = getTypographicElement({
   level: _TYPO_H5_SCALE,
@@ -758,7 +779,7 @@ var ZIndex = /*#__PURE__*/Object.freeze({
   ZINDEX_TOOLTIP: ZINDEX_TOOLTIP
 });
 
-var DSV = _objectSpread({}, Breakpoint, cfg, Colors, Gutter, Margin, ZIndex, CSSFont, BrandColors, {
+var DSV = _objectSpread({}, Breakpoint, Typography, Colors, Gutter, Margin, ZIndex, CSSFont, BrandColors, {
   _Rhythm: _Rhythm
 });
 

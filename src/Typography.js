@@ -18,7 +18,7 @@ export const LETTER_SPACING_SCALE = 0.006;
 
 export const RHYTHM_SCALE = FIBONACCI;
 
-export const TYPO_BOLD_HEADERS = true;
+export const TYPO_BOLD_HEADERS = false;
 
 // Scale Rhythm adjustment
 // H1
@@ -29,27 +29,27 @@ export const _TYPO_H1_SPACING_AFTER = 1;
 // H2
 export const _TYPO_H2_SCALE = 2;
 export const _TYPO_H2_SPACING_BEFORE = 1;
-export const _TYPO_H2_SPACING_AFTER = 0;
+export const _TYPO_H2_SPACING_AFTER = 1;
 
 // H3
 export const _TYPO_H3_SCALE = 1;
 export const _TYPO_H3_SPACING_BEFORE = 1;
-export const _TYPO_H3_SPACING_AFTER = 0;
+export const _TYPO_H3_SPACING_AFTER = 1;
 
 // H4
 export const _TYPO_H4_SCALE = 0;
 export const _TYPO_H4_SPACING_BEFORE = 1;
-export const _TYPO_H4_SPACING_AFTER = 0;
+export const _TYPO_H4_SPACING_AFTER = 1;
 
 // H5
 export const _TYPO_H5_SCALE = -0.5;
-export const _TYPO_H5_SPACING_BEFORE = 0;
-export const _TYPO_H5_SPACING_AFTER = 0;
+export const _TYPO_H5_SPACING_BEFORE = 1;
+export const _TYPO_H5_SPACING_AFTER = 1;
 
 // H6
 export const _TYPO_H6_SCALE = -1;
-export const _TYPO_H6_SPACING_BEFORE = 0;
-export const _TYPO_H6_SPACING_AFTER = 0;
+export const _TYPO_H6_SPACING_BEFORE = 1;
+export const _TYPO_H6_SPACING_AFTER = 1;
 
 // P
 export const _TYPO_P_SCALE = 0;
