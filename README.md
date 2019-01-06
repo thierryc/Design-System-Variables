@@ -30,7 +30,26 @@ Margins and gutters are also based on the (paragraphe) line height.
 
 * Rhythm (FIBONACCI)
 
-## BrandColors
+# Colors
+
+Color object have accessibility data. 
+
+'DisplayColor' is the color for the text on it. 
+It can be black or white. 
+
+```js
+
+"contrastBlack": "7.16",
+"contrastWhite": "2.93",
+"displayColor": "black",
+"accessibility": {
+    "aa": true,
+    "aaLarge": true,
+    "aaa": true,
+    "aaaLarge": true
+}
+
+```
 
 ## Background Colors
 
@@ -41,16 +60,20 @@ Margins and gutters are also based on the (paragraphe) line height.
 * Yellow Hue
 * Red Hue
 
-# All Variables:
+# Variables:
 
 ## Typography
 
 * 1 heading font (Lora serif font)
 * 1 body font (Nato sans serif font)
+* 1 code font 
 
 ## Colors 
 
 * 4 brand colors
+* 4 messages colors (success, warning, danger, info)
+* 10 other color
+* and useful colors like twitter and Facebook
 
 ## Grid
 
