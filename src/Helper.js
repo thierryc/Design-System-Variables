@@ -27,8 +27,10 @@ export const getStringFromPx = (val, unit = 'px', fontSize = ROOT_FONTSIZE) => {
 /**
  * Use pixels to compute the font size em and rem are not consistent.
  * @param {Integer} level Level of the rhythm.
- * @param {Integer} capHeight Level of the rhythm.
- * @param {Integer} fontFamily Level of the rhythm.
+ * @param {Float} capHeight Cap Height for the font.
+ * @param {String} fontFamily Font family name.
+ * @param {Float} xLineHeight LineHeight multiplicator Goal.
+ * @param {String} fontWeight Font Weight.
  * @param {Integer} before 
  * @param {Integer} after 
  */
@@ -37,6 +39,7 @@ export const getTypographicElement = ({
   level, 
   capHeight, 
   fontFamily,
+  xLineHeight = TYPO_BASE_LINE_HEIGHT,
   fontWeight = null,
   before = 0,
   after = 0,
@@ -49,7 +52,7 @@ export const getTypographicElement = ({
   const fontSizePx = Math.pow( RHYTHM_SCALE, level ) * ROOT_FONTSIZE;
   
   // conpute the better line height for the font size
-  const lineHeightPx = Math.round((fontSizePx * TYPO_BASE_LINE_HEIGHT) / grid) * grid;
+  const lineHeightPx = Math.round((fontSizePx * xLineHeight) / grid) * grid;
 
   const capHeightPx = fontSizePx * capHeight;
   // align the baseline on the grid.

@@ -2,7 +2,8 @@ import * as cfg from './Typography'
 import { getStringFromPx, getEmString, getTypographicElement } from './Helper';
 
 const H1 = getTypographicElement({
-  level: cfg._TYPO_H1_SCALE, 
+  level: cfg._TYPO_H1_SCALE,
+  xLineHeight: cfg._TYPO_H1_LINEHEIGHT,
   capHeight: cfg._TYPO_CAP_HEIGHT, 
   fontFamily: cfg.TYPO_FONT_FAMILY, 
   before: cfg._TYPO_H1_SPACING_BEFORE,
@@ -10,7 +11,8 @@ const H1 = getTypographicElement({
 });
 
 const H2 = getTypographicElement({
-  level: cfg._TYPO_H2_SCALE, 
+  level: cfg._TYPO_H2_SCALE,
+  xLineHeight: cfg._TYPO_H2_LINEHEIGHT,
   capHeight: cfg._TYPO_CAP_HEIGHT, 
   fontFamily: cfg.TYPO_FONT_FAMILY, 
   before: cfg._TYPO_H2_SPACING_BEFORE,
@@ -19,6 +21,7 @@ const H2 = getTypographicElement({
 
 const H3 = getTypographicElement({
   level: cfg._TYPO_H3_SCALE, 
+  xLineHeight: cfg._TYPO_H3_LINEHEIGHT,
   capHeight: cfg._TYPO_CAP_HEIGHT, 
   fontFamily: cfg.TYPO_FONT_FAMILY, 
   before: cfg._TYPO_H3_SPACING_BEFORE,
@@ -26,7 +29,8 @@ const H3 = getTypographicElement({
 });
 
 const H4 = getTypographicElement({
-  level: cfg._TYPO_H4_SCALE, 
+  level: cfg._TYPO_H4_SCALE,
+  xLineHeight: cfg._TYPO_H4_LINEHEIGHT,
   capHeight: cfg._TYPO_CAP_HEIGHT, 
   fontFamily: cfg.TYPO_FONT_FAMILY, 
   before: cfg._TYPO_H4_SPACING_BEFORE,
@@ -35,6 +39,7 @@ const H4 = getTypographicElement({
 
 const H5 = getTypographicElement({
   level: cfg._TYPO_H5_SCALE, 
+  xLineHeight: cfg._TYPO_H5_LINEHEIGHT,
   capHeight: cfg._TYPO_CAP_HEIGHT, 
   fontFamily: cfg.TYPO_FONT_FAMILY, 
   before: cfg._TYPO_H5_SPACING_BEFORE,
@@ -43,6 +48,7 @@ const H5 = getTypographicElement({
 
 const H6 = getTypographicElement({
   level: cfg._TYPO_H6_SCALE, 
+  xLineHeight: cfg._TYPO_H6_LINEHEIGHT,
   capHeight: cfg._TYPO_CAP_HEIGHT, 
   fontFamily: cfg.TYPO_FONT_FAMILY, 
   before: cfg._TYPO_H6_SPACING_BEFORE,
@@ -51,6 +57,7 @@ const H6 = getTypographicElement({
 
 const P = getTypographicElement({
   level: cfg._TYPO_P_SCALE, 
+  xLineHeight: cfg._TYPO_P_LINEHEIGHT,
   capHeight: cfg._TYPO_CAP_HEIGHT_BODY, 
   fontFamily: cfg.TYPO_FONT_FAMILY_BODY, 
   before: cfg._TYPO_P_SPACING_BEFORE,

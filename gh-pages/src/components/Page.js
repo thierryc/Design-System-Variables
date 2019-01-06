@@ -9,6 +9,7 @@ import{
   MARGIN_MD,
   MARGIN_LG,
   MARGIN_XL,
+  TYPO_TEXT_COL_MAX_WIDTH,
 } from './../design-system-variables';
 
 export const Page = styled.div`
@@ -40,5 +41,9 @@ export const Page = styled.div`
 
 `;
 
+export const TextContainer = styled.div`
+  max-width: ${TYPO_TEXT_COL_MAX_WIDTH}em;
+  margin: 0 auto;
+`;
 
 

@@ -112,6 +112,8 @@
   var ROOT_FONTSIZE = 16;
   var TYPO_DEFAULT_FONTSIZE = 1; //em
 
+  var TYPO_TEXT_COL_MAX_WIDTH = 46; // em
+
   /* Edit your font  */
 
   var TYPO_FONT_FAMILY_URL =
@@ -120,37 +122,45 @@
   var _TYPO_CAP_HEIGHT = 0.7;
   var TYPO_FONT_FAMILY_BODY = "'Lato', sans-serif";
   var _TYPO_CAP_HEIGHT_BODY = 0.725;
-  var TYPO_BASE_LINE_HEIGHT = 1.6;
+  var TYPO_BASE_LINE_HEIGHT = 2.1;
+  var TYPO_HEADER_X_LINE_HEIGHT = 1.6;
   var LETTER_SPACING_SCALE = 0.006;
   var RHYTHM_SCALE = FIBONACCI;
   var TYPO_BOLD_HEADERS = true; // Scale Rhythm adjustment
   // H1
 
   var _TYPO_H1_SCALE = 3;
+  var _TYPO_H1_LINEHEIGHT = TYPO_HEADER_X_LINE_HEIGHT;
   var _TYPO_H1_SPACING_BEFORE = 1;
   var _TYPO_H1_SPACING_AFTER = 1; // H2
 
   var _TYPO_H2_SCALE = 2;
+  var _TYPO_H2_LINEHEIGHT = TYPO_HEADER_X_LINE_HEIGHT;
   var _TYPO_H2_SPACING_BEFORE = 1;
   var _TYPO_H2_SPACING_AFTER = 1; // H3
 
   var _TYPO_H3_SCALE = 1;
+  var _TYPO_H3_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_H3_SPACING_BEFORE = 1;
   var _TYPO_H3_SPACING_AFTER = 1; // H4
 
   var _TYPO_H4_SCALE = 0;
+  var _TYPO_H4_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_H4_SPACING_BEFORE = 1;
   var _TYPO_H4_SPACING_AFTER = 1; // H5
 
   var _TYPO_H5_SCALE = -0.5;
+  var _TYPO_H5_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_H5_SPACING_BEFORE = 1;
   var _TYPO_H5_SPACING_AFTER = 1; // H6
 
   var _TYPO_H6_SCALE = -1;
+  var _TYPO_H6_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_H6_SPACING_BEFORE = 1;
   var _TYPO_H6_SPACING_AFTER = 1; // P
 
-  var _TYPO_P_SCALE = 0;
+  var _TYPO_P_SCALE = 0.333;
+  var _TYPO_P_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_P_SPACING_BEFORE = 0;
   var _TYPO_P_SPACING_AFTER = 0;
   var TYPO_UNIT = "em";
@@ -158,34 +168,43 @@
   var Typography = /*#__PURE__*/ Object.freeze({
     ROOT_FONTSIZE: ROOT_FONTSIZE,
     TYPO_DEFAULT_FONTSIZE: TYPO_DEFAULT_FONTSIZE,
+    TYPO_TEXT_COL_MAX_WIDTH: TYPO_TEXT_COL_MAX_WIDTH,
     TYPO_FONT_FAMILY_URL: TYPO_FONT_FAMILY_URL,
     TYPO_FONT_FAMILY: TYPO_FONT_FAMILY,
     _TYPO_CAP_HEIGHT: _TYPO_CAP_HEIGHT,
     TYPO_FONT_FAMILY_BODY: TYPO_FONT_FAMILY_BODY,
     _TYPO_CAP_HEIGHT_BODY: _TYPO_CAP_HEIGHT_BODY,
     TYPO_BASE_LINE_HEIGHT: TYPO_BASE_LINE_HEIGHT,
+    TYPO_HEADER_X_LINE_HEIGHT: TYPO_HEADER_X_LINE_HEIGHT,
     LETTER_SPACING_SCALE: LETTER_SPACING_SCALE,
     RHYTHM_SCALE: RHYTHM_SCALE,
     TYPO_BOLD_HEADERS: TYPO_BOLD_HEADERS,
     _TYPO_H1_SCALE: _TYPO_H1_SCALE,
+    _TYPO_H1_LINEHEIGHT: _TYPO_H1_LINEHEIGHT,
     _TYPO_H1_SPACING_BEFORE: _TYPO_H1_SPACING_BEFORE,
     _TYPO_H1_SPACING_AFTER: _TYPO_H1_SPACING_AFTER,
     _TYPO_H2_SCALE: _TYPO_H2_SCALE,
+    _TYPO_H2_LINEHEIGHT: _TYPO_H2_LINEHEIGHT,
     _TYPO_H2_SPACING_BEFORE: _TYPO_H2_SPACING_BEFORE,
     _TYPO_H2_SPACING_AFTER: _TYPO_H2_SPACING_AFTER,
     _TYPO_H3_SCALE: _TYPO_H3_SCALE,
+    _TYPO_H3_LINEHEIGHT: _TYPO_H3_LINEHEIGHT,
     _TYPO_H3_SPACING_BEFORE: _TYPO_H3_SPACING_BEFORE,
     _TYPO_H3_SPACING_AFTER: _TYPO_H3_SPACING_AFTER,
     _TYPO_H4_SCALE: _TYPO_H4_SCALE,
+    _TYPO_H4_LINEHEIGHT: _TYPO_H4_LINEHEIGHT,
     _TYPO_H4_SPACING_BEFORE: _TYPO_H4_SPACING_BEFORE,
     _TYPO_H4_SPACING_AFTER: _TYPO_H4_SPACING_AFTER,
     _TYPO_H5_SCALE: _TYPO_H5_SCALE,
+    _TYPO_H5_LINEHEIGHT: _TYPO_H5_LINEHEIGHT,
     _TYPO_H5_SPACING_BEFORE: _TYPO_H5_SPACING_BEFORE,
     _TYPO_H5_SPACING_AFTER: _TYPO_H5_SPACING_AFTER,
     _TYPO_H6_SCALE: _TYPO_H6_SCALE,
+    _TYPO_H6_LINEHEIGHT: _TYPO_H6_LINEHEIGHT,
     _TYPO_H6_SPACING_BEFORE: _TYPO_H6_SPACING_BEFORE,
     _TYPO_H6_SPACING_AFTER: _TYPO_H6_SPACING_AFTER,
     _TYPO_P_SCALE: _TYPO_P_SCALE,
+    _TYPO_P_LINEHEIGHT: _TYPO_P_LINEHEIGHT,
     _TYPO_P_SPACING_BEFORE: _TYPO_P_SPACING_BEFORE,
     _TYPO_P_SPACING_AFTER: _TYPO_P_SPACING_AFTER,
     TYPO_UNIT: TYPO_UNIT
@@ -235,8 +254,10 @@
   /**
    * Use pixels to compute the font size em and rem are not consistent.
    * @param {Integer} level Level of the rhythm.
-   * @param {Integer} capHeight Level of the rhythm.
-   * @param {Integer} fontFamily Level of the rhythm.
+   * @param {Float} capHeight Cap Height for the font.
+   * @param {String} fontFamily Font family name.
+   * @param {Float} xLineHeight LineHeight multiplicator Goal.
+   * @param {String} fontWeight Font Weight.
    * @param {Integer} before
    * @param {Integer} after
    */
@@ -245,6 +266,9 @@
     var level = _ref.level,
       capHeight = _ref.capHeight,
       fontFamily = _ref.fontFamily,
+      _ref$xLineHeight = _ref.xLineHeight,
+      xLineHeight =
+        _ref$xLineHeight === void 0 ? TYPO_BASE_LINE_HEIGHT : _ref$xLineHeight,
       _ref$fontWeight = _ref.fontWeight,
       fontWeight = _ref$fontWeight === void 0 ? null : _ref$fontWeight,
       _ref$before = _ref.before,
@@ -256,8 +280,7 @@
     var grid = Math.floor(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
     var fontSizePx = Math.pow(RHYTHM_SCALE, level) * ROOT_FONTSIZE; // conpute the better line height for the font size
 
-    var lineHeightPx =
-      Math.round((fontSizePx * TYPO_BASE_LINE_HEIGHT) / grid) * grid;
+    var lineHeightPx = Math.round((fontSizePx * xLineHeight) / grid) * grid;
 
     var shift = Math.round((lineHeightPx - fontSizePx * capHeight) / 2); //const marginTop = Math.ceil();
 
@@ -467,6 +490,7 @@
 
   var H1 = getTypographicElement({
     level: _TYPO_H1_SCALE,
+    xLineHeight: _TYPO_H1_LINEHEIGHT,
     capHeight: _TYPO_CAP_HEIGHT,
     fontFamily: TYPO_FONT_FAMILY,
     before: _TYPO_H1_SPACING_BEFORE,
@@ -474,6 +498,7 @@
   });
   var H2 = getTypographicElement({
     level: _TYPO_H2_SCALE,
+    xLineHeight: _TYPO_H2_LINEHEIGHT,
     capHeight: _TYPO_CAP_HEIGHT,
     fontFamily: TYPO_FONT_FAMILY,
     before: _TYPO_H2_SPACING_BEFORE,
@@ -481,6 +506,7 @@
   });
   var H3 = getTypographicElement({
     level: _TYPO_H3_SCALE,
+    xLineHeight: _TYPO_H3_LINEHEIGHT,
     capHeight: _TYPO_CAP_HEIGHT,
     fontFamily: TYPO_FONT_FAMILY,
     before: _TYPO_H3_SPACING_BEFORE,
@@ -488,6 +514,7 @@
   });
   var H4 = getTypographicElement({
     level: _TYPO_H4_SCALE,
+    xLineHeight: _TYPO_H4_LINEHEIGHT,
     capHeight: _TYPO_CAP_HEIGHT,
     fontFamily: TYPO_FONT_FAMILY,
     before: _TYPO_H4_SPACING_BEFORE,
@@ -495,6 +522,7 @@
   });
   var H5 = getTypographicElement({
     level: _TYPO_H5_SCALE,
+    xLineHeight: _TYPO_H5_LINEHEIGHT,
     capHeight: _TYPO_CAP_HEIGHT,
     fontFamily: TYPO_FONT_FAMILY,
     before: _TYPO_H5_SPACING_BEFORE,
@@ -502,6 +530,7 @@
   });
   var H6 = getTypographicElement({
     level: _TYPO_H6_SCALE,
+    xLineHeight: _TYPO_H6_LINEHEIGHT,
     capHeight: _TYPO_CAP_HEIGHT,
     fontFamily: TYPO_FONT_FAMILY,
     before: _TYPO_H6_SPACING_BEFORE,
@@ -509,6 +538,7 @@
   });
   var P = getTypographicElement({
     level: _TYPO_P_SCALE,
+    xLineHeight: _TYPO_P_LINEHEIGHT,
     capHeight: _TYPO_CAP_HEIGHT_BODY,
     fontFamily: TYPO_FONT_FAMILY_BODY,
     before: _TYPO_P_SPACING_BEFORE,
