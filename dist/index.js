@@ -116,9 +116,9 @@ var TYPO_TEXT_COL_MAX_WIDTH = 46; // em
 
 var TYPO_FONT_FAMILY_URL =
   "https://fonts.googleapis.com/css?family=Lato|Lora:400,700";
-var TYPO_FONT_FAMILY = "'Lora', serif";
+var TYPO_FONT_FAMILY = '"Lora", serif';
 var _TYPO_CAP_HEIGHT = 0.7;
-var TYPO_FONT_FAMILY_BODY = "'Lato', sans-serif";
+var TYPO_FONT_FAMILY_BODY = '"Lato", sans-serif';
 var _TYPO_CAP_HEIGHT_BODY = 0.725;
 var TYPO_BASE_LINE_HEIGHT = 2.1;
 var TYPO_HEADER_X_LINE_HEIGHT = 1.6;

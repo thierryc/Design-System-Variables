@@ -9,10 +9,10 @@ export const TYPO_TEXT_COL_MAX_WIDTH = 46; // em
 /* Edit your font  */
 export const TYPO_FONT_FAMILY_URL = 'https://fonts.googleapis.com/css?family=Lato|Lora:400,700';
 
-export const TYPO_FONT_FAMILY = `'Lora', serif`;
+export const TYPO_FONT_FAMILY = `"Lora", serif`;
 export const _TYPO_CAP_HEIGHT = 0.7;
 
-export const TYPO_FONT_FAMILY_BODY = `'Lato', sans-serif`;
+export const TYPO_FONT_FAMILY_BODY = `"Lato", sans-serif`;
 export const _TYPO_CAP_HEIGHT_BODY = 0.725;
 
 export const TYPO_BASE_LINE_HEIGHT = 2.1;
