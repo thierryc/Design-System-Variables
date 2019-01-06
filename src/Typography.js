@@ -43,19 +43,19 @@ export const _TYPO_H3_SPACING_BEFORE = 1;
 export const _TYPO_H3_SPACING_AFTER = 1;
 
 // H4
-export const _TYPO_H4_SCALE = 0;
+export const _TYPO_H4_SCALE = 0.333;
 export const _TYPO_H4_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
 export const _TYPO_H4_SPACING_BEFORE = 1;
 export const _TYPO_H4_SPACING_AFTER = 1;
 
 // H5
-export const _TYPO_H5_SCALE = -0.5;
+export const _TYPO_H5_SCALE = 0;
 export const _TYPO_H5_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
 export const _TYPO_H5_SPACING_BEFORE = 1;
 export const _TYPO_H5_SPACING_AFTER = 1;
 
 // H6
-export const _TYPO_H6_SCALE = -1;
+export const _TYPO_H6_SCALE = -0.333;
 export const _TYPO_H6_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
 export const _TYPO_H6_SPACING_BEFORE = 1;
 export const _TYPO_H6_SPACING_AFTER = 1;
@@ -65,6 +65,12 @@ export const _TYPO_P_SCALE = 0.333;
 export const _TYPO_P_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
 export const _TYPO_P_SPACING_BEFORE = 0;
 export const _TYPO_P_SPACING_AFTER = 0;
+
+// P_LEAD
+export const _TYPO_P_LEAD_SCALE = .666;
+export const _TYPO_P_LEAD_LINEHEIGHT = 1.1;
+export const _TYPO_P_LEAD_SPACING_BEFORE = 0;
+export const _TYPO_P_LEAD_SPACING_AFTER = 1;
 
 export const TYPO_UNIT = 'em';
 

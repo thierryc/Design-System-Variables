@@ -1,6 +1,14 @@
 import generate from './coloralgorithm/generate'
 
-const brandColorScheme_one = {
+
+// primary
+
+
+// secondary
+
+
+
+const brandColorScheme_primary = {
   specs: {
     // Number of colors
     steps: 11,
@@ -34,7 +42,7 @@ const brandColorScheme_one = {
   }
 };
 
-const colorArray = generate(brandColorScheme_one);
+const colorArray = generate(brandColorScheme_primary);
 
 export const _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT = colorArray;
 

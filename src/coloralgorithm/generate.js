@@ -1,6 +1,13 @@
 import chroma from 'chroma-js';
 import * as Curves from './curves.js';
 
+const minimum = {
+  aa: 4.5,
+  aaLarge: 3,
+  aaa: 7,
+  aaaLarge: 4.5,
+};
+
 function distribute(value, rangeA, rangeB) {
 
   const [fromLow, fromHigh] = Array.from(rangeA)
@@ -85,8 +92,15 @@ export default function({specs}) {
     const contrastWhite = chroma.contrast(hex, "white").toFixed(2)
     const contrastBlack = chroma.contrast(hex, "black").toFixed(2)
 
+    let contrast = contrastWhite;
+
     var displayColor = ""
-    if (contrastWhite >= 4.5) { displayColor = "white" } else { displayColor = "black" }
+    if (contrastWhite >= 4.5) { 
+      displayColor = "white" 
+    } else { 
+      contrast = contrastBlack;
+      displayColor = "black" 
+    }
 
     var colorObj = {
       hex: chroma(hex).hex(),
@@ -102,6 +116,12 @@ export default function({specs}) {
       contrastBlack:contrastBlack,
       contrastWhite:contrastWhite,
       displayColor:displayColor,
+      accessibility: {
+        aa: contrast >= minimum.aa,
+        aaLarge: contrast >= minimum.aaLarge,
+        aaa: contrast >= minimum.aaa,
+        aaaLarge: contrast >= minimum.aaaLarge,
+      },
     }
     colorMap.push(colorObj)
   }

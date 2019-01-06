@@ -64,6 +64,15 @@ const P = getTypographicElement({
   after: cfg._TYPO_P_SPACING_AFTER,
 });
 
+const P_LEAD = getTypographicElement({
+  level: cfg._TYPO_P_LEAD_SCALE, 
+  xLineHeight: cfg._TYPO_P_LEAD_LINEHEIGHT,
+  capHeight: cfg._TYPO_CAP_HEIGHT, 
+  fontFamily: cfg.TYPO_FONT_FAMILY, 
+  before: cfg._TYPO_P_LEAD_SPACING_BEFORE,
+  after: cfg._TYPO_P_LEAD_SPACING_AFTER,
+});
+
 export {
   H1,
   H2,
@@ -71,5 +80,6 @@ export {
   H4,
   H5,
   H6,
-  P
+  P,
+  P_LEAD
 };

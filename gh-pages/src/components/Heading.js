@@ -29,5 +29,19 @@ export const P = ({children}) => <p style={{
   ...dsv.P
 }}>{children}</p>;
 
+export const PLead = ({children}) => <p style={{
+  ...dsv.P_LEAD
+}}>{children}</p>;
+
+export const Blockquote = ({children}) => <blockquote style={{
+  ...dsv.P_LEAD,
+  marginTop: `${dsv.SPACER}rem`,
+  marginLeft: `-${dsv.SPACER_HALF}rem`,
+  marginRight: `-${dsv.SPACER_HALF}rem`,
+  paddingLeft: `${dsv.SPACER_HALF_MINUS_1PX}rem`,
+  paddingRight: `${dsv.SPACER_HALF}rem`,
+  borderLeft: `1px solid #000000`,
+}}>{children}</blockquote>;
+
 
 

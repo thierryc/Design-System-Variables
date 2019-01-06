@@ -144,17 +144,17 @@
   var _TYPO_H3_SPACING_BEFORE = 1;
   var _TYPO_H3_SPACING_AFTER = 1; // H4
 
-  var _TYPO_H4_SCALE = 0;
+  var _TYPO_H4_SCALE = 0.333;
   var _TYPO_H4_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_H4_SPACING_BEFORE = 1;
   var _TYPO_H4_SPACING_AFTER = 1; // H5
 
-  var _TYPO_H5_SCALE = -0.5;
+  var _TYPO_H5_SCALE = 0;
   var _TYPO_H5_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_H5_SPACING_BEFORE = 1;
   var _TYPO_H5_SPACING_AFTER = 1; // H6
 
-  var _TYPO_H6_SCALE = -1;
+  var _TYPO_H6_SCALE = -0.333;
   var _TYPO_H6_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_H6_SPACING_BEFORE = 1;
   var _TYPO_H6_SPACING_AFTER = 1; // P
@@ -162,7 +162,12 @@
   var _TYPO_P_SCALE = 0.333;
   var _TYPO_P_LINEHEIGHT = TYPO_BASE_LINE_HEIGHT;
   var _TYPO_P_SPACING_BEFORE = 0;
-  var _TYPO_P_SPACING_AFTER = 0;
+  var _TYPO_P_SPACING_AFTER = 0; // P_LEAD
+
+  var _TYPO_P_LEAD_SCALE = 0.666;
+  var _TYPO_P_LEAD_LINEHEIGHT = 1.1;
+  var _TYPO_P_LEAD_SPACING_BEFORE = 0;
+  var _TYPO_P_LEAD_SPACING_AFTER = 1;
   var TYPO_UNIT = "em";
 
   var Typography = /*#__PURE__*/ Object.freeze({
@@ -207,6 +212,10 @@
     _TYPO_P_LINEHEIGHT: _TYPO_P_LINEHEIGHT,
     _TYPO_P_SPACING_BEFORE: _TYPO_P_SPACING_BEFORE,
     _TYPO_P_SPACING_AFTER: _TYPO_P_SPACING_AFTER,
+    _TYPO_P_LEAD_SCALE: _TYPO_P_LEAD_SCALE,
+    _TYPO_P_LEAD_LINEHEIGHT: _TYPO_P_LEAD_LINEHEIGHT,
+    _TYPO_P_LEAD_SPACING_BEFORE: _TYPO_P_LEAD_SPACING_BEFORE,
+    _TYPO_P_LEAD_SPACING_AFTER: _TYPO_P_LEAD_SPACING_AFTER,
     TYPO_UNIT: TYPO_UNIT
   });
 
@@ -544,6 +553,14 @@
     before: _TYPO_P_SPACING_BEFORE,
     after: _TYPO_P_SPACING_AFTER
   });
+  var P_LEAD = getTypographicElement({
+    level: _TYPO_P_LEAD_SCALE,
+    xLineHeight: _TYPO_P_LEAD_LINEHEIGHT,
+    capHeight: _TYPO_CAP_HEIGHT,
+    fontFamily: TYPO_FONT_FAMILY,
+    before: _TYPO_P_LEAD_SPACING_BEFORE,
+    after: _TYPO_P_LEAD_SPACING_AFTER
+  });
 
   var CSSFont = /*#__PURE__*/ Object.freeze({
     H1: H1,
@@ -552,7 +569,8 @@
     H4: H4,
     H5: H5,
     H6: H6,
-    P: P
+    P: P,
+    P_LEAD: P_LEAD
   });
 
   var commonjsGlobal =
@@ -4760,6 +4778,13 @@
     easeInOutBack: easeInOutBack
   });
 
+  var minimum = {
+    aa: 4.5,
+    aaLarge: 3,
+    aaa: 7,
+    aaaLarge: 4.5
+  };
+
   function distribute(value, rangeA, rangeB) {
     var _Array$from = Array.from(rangeA),
       _Array$from2 = _slicedToArray(_Array$from, 2),
@@ -4875,11 +4900,13 @@
       ).rgb();
       var contrastWhite = chroma.contrast(hex, "white").toFixed(2);
       var contrastBlack = chroma.contrast(hex, "black").toFixed(2);
+      var contrast = contrastWhite;
       var displayColor = "";
 
       if (contrastWhite >= 4.5) {
         displayColor = "white";
       } else {
+        contrast = contrastBlack;
         displayColor = "black";
       }
 
@@ -4896,7 +4923,13 @@
         label: specs.modifier * index,
         contrastBlack: contrastBlack,
         contrastWhite: contrastWhite,
-        displayColor: displayColor
+        displayColor: displayColor,
+        accessibility: {
+          aa: contrast >= minimum.aa,
+          aaLarge: contrast >= minimum.aaLarge,
+          aaa: contrast >= minimum.aaa,
+          aaaLarge: contrast >= minimum.aaaLarge
+        }
       };
       colorMap.push(colorObj);
     }
@@ -4904,7 +4937,9 @@
     return colorMap;
   }
 
-  var brandColorScheme_one = {
+  // secondary
+
+  var brandColorScheme_primary = {
     specs: {
       // Number of colors
       steps: 11,
@@ -4937,7 +4972,7 @@
       modifier: 10
     }
   };
-  var colorArray = generate(brandColorScheme_one);
+  var colorArray = generate(brandColorScheme_primary);
   var _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT = colorArray;
 
   var BrandColors = /*#__PURE__*/ Object.freeze({
@@ -4966,12 +5001,11 @@
     SPACER_TWO_THIRD_MINUS_1PX: SPACER_TWO_THIRD_MINUS_1PX
   });
 
-  var grid = TYPO_BASE_LINE_HEIGHT / 3;
-  var GUTTER_SX = getEmString(1 * grid);
-  var GUTTER_SM = getEmString(1 * grid);
-  var GUTTER_MD = getEmString(2 * grid);
-  var GUTTER_LG = getEmString(3 * grid);
-  var GUTTER_XL = getEmString(3 * grid);
+  var GUTTER_SX = getEmString(SPACER_ONE_THIRD);
+  var GUTTER_SM = getEmString(SPACER_ONE_THIRD);
+  var GUTTER_MD = getEmString(SPACER_TWO_THIRD);
+  var GUTTER_LG = getEmString(SPACER);
+  var GUTTER_XL = getEmString(SPACER);
 
   var Gutter = /*#__PURE__*/ Object.freeze({
     GUTTER_SX: GUTTER_SX,
