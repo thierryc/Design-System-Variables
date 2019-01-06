@@ -1,19 +1,18 @@
 # Design-System-Variables
 
-https://thierryc.github.io/Design-System-Variables
-
 Variables Design System for Grid, Layout, Media Queries, Responsive Design, Typography Rhythm and colors.
 A “ready to use” set of variables for Design System.
 
-### Typography drived variables for CSS in JS.
+## Demo
+
+https://thierryc.github.io/Design-System-Variables
+
+
+# Typography drived variables for CSS in JS.
 
 Spacer is 1/3 or 2/3 of the (paragraphe) line heights. 
 
 Margins and gutters are also based on the (paragraphe) line height.
-
-## Accessibility
-
-### Colors 
 
 ## styled-components
 
