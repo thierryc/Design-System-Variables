@@ -1,7 +1,11 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import prettier from 'rollup-plugin-prettier';
+import stripBanner from 'rollup-plugin-strip-banner';
+import replace from 'rollup-plugin-replace';
 import pkg from './package.json';
+
 
 export default [
 	// browser-friendly UMD build
@@ -17,7 +21,18 @@ export default [
 			commonjs(), // so Rollup can convert `ms` to an ES module
 			babel({
 				exclude: ['node_modules/**']
-			})
+			}),
+			stripBanner({
+				exclude: 'node_modules/**/*',
+			}),
+			prettier({
+				tabWidth: 2,
+				singleQuote: false,
+				parser: 'babylon',
+			}),
+			replace({
+				ENVIRONMENT: JSON.stringify('production')
+			}),
 		]
 	},
 
@@ -37,7 +52,18 @@ export default [
 		plugins: [
 			babel({
 				exclude: ['node_modules/**']
-			})
+			}),
+			stripBanner({
+				exclude: 'node_modules/**/*',
+			}),
+			prettier({
+				tabWidth: 2,
+				singleQuote: false,
+				parser: 'babylon',
+			}),
+			replace({
+				ENVIRONMENT: JSON.stringify('production')
+			}),
 		]
 	}
 ];

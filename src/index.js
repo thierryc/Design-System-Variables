@@ -3,6 +3,7 @@ import * as Typography from './Typography'
 import * as Colors from './Colors'
 import * as CSSFont from './CSSFont';
 import * as BrandColors from './BrandColors';
+import * as Grid from './Grid';
 import * as Gutter from './Gutter';
 import * as Margin from './Margin';
 import * as ZIndex from './ZIndex';
@@ -13,6 +14,7 @@ const DSV = {
     ...Breakpoint,
     ...Typography,
     ...Colors,
+    ...Grid,
     ...Gutter,
     ...Margin,
     ...ZIndex,

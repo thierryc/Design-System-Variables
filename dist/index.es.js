@@ -1,5 +1,5 @@
-import chroma from 'chroma-js';
-import bezier from 'bezier-easing';
+import chroma from "chroma-js";
+import bezier from "bezier-easing";
 
 function _defineProperty(obj, key, value) {
   if (key in obj) {
@@ -21,13 +21,15 @@ function _objectSpread(target) {
     var source = arguments[i] != null ? arguments[i] : {};
     var ownKeys = Object.keys(source);
 
-    if (typeof Object.getOwnPropertySymbols === 'function') {
-      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
-        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
-      }));
+    if (typeof Object.getOwnPropertySymbols === "function") {
+      ownKeys = ownKeys.concat(
+        Object.getOwnPropertySymbols(source).filter(function(sym) {
+          return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+        })
+      );
     }
 
-    ownKeys.forEach(function (key) {
+    ownKeys.forEach(function(key) {
       _defineProperty(target, key, source[key]);
     });
   }
@@ -36,7 +38,9 @@ function _objectSpread(target) {
 }
 
 function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+  return (
+    _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest()
+  );
 }
 
 function _arrayWithHoles(arr) {
@@ -50,7 +54,11 @@ function _iterableToArrayLimit(arr, i) {
   var _e = undefined;
 
   try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+    for (
+      var _i = arr[Symbol.iterator](), _s;
+      !(_n = (_s = _i.next()).done);
+      _n = true
+    ) {
       _arr.push(_s.value);
 
       if (i && _arr.length === i) break;
@@ -73,7 +81,6 @@ function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance");
 }
 
-// Scale Rhythm
 var MINOR_THIRD = 1.2;
 var MAJOR_THIRD = 1.25;
 var FOURTH = 1.333;
@@ -83,7 +90,7 @@ var MINOR_SEVENTH = 1.778;
 var MAJOR_SEVENTH = 1.875;
 var OCTAVE = 2.0;
 
-var _Rhythm = /*#__PURE__*/Object.freeze({
+var _Rhythm = /*#__PURE__*/ Object.freeze({
   MINOR_THIRD: MINOR_THIRD,
   MAJOR_THIRD: MAJOR_THIRD,
   FOURTH: FOURTH,
@@ -99,7 +106,8 @@ var TYPO_DEFAULT_FONTSIZE = 1; //em
 
 /* Edit your font  */
 
-var TYPO_FONT_FAMILY_URL = 'https://fonts.googleapis.com/css?family=Lato|Lora:400,700';
+var TYPO_FONT_FAMILY_URL =
+  "https://fonts.googleapis.com/css?family=Lato|Lora:400,700";
 var TYPO_FONT_FAMILY = "'Lora', serif";
 var _TYPO_CAP_HEIGHT = 0.7;
 var TYPO_FONT_FAMILY_BODY = "'Lato', sans-serif";
@@ -137,9 +145,9 @@ var _TYPO_H6_SPACING_AFTER = 1; // P
 var _TYPO_P_SCALE = 0;
 var _TYPO_P_SPACING_BEFORE = 0;
 var _TYPO_P_SPACING_AFTER = 0;
-var TYPO_UNIT = 'em';
+var TYPO_UNIT = "em";
 
-var Typography = /*#__PURE__*/Object.freeze({
+var Typography = /*#__PURE__*/ Object.freeze({
   ROOT_FONTSIZE: ROOT_FONTSIZE,
   TYPO_DEFAULT_FONTSIZE: TYPO_DEFAULT_FONTSIZE,
   TYPO_FONT_FAMILY_URL: TYPO_FONT_FAMILY_URL,
@@ -184,26 +192,34 @@ var SCREEN_SIZE_MIN_XL = 1920;
 var FIXDIGIT = 3;
 
 var getEmString = function getEmString(val) {
-  return val.toFixed(FIXDIGIT) == 0 ? 0 : "".concat(val.toFixed(FIXDIGIT), "em");
+  return val.toFixed(FIXDIGIT) == 0
+    ? 0
+    : "".concat(val.toFixed(FIXDIGIT), "em");
 };
 var getRemString = function getRemString(val) {
-  return val.toFixed(FIXDIGIT) == 0 ? 0 : "".concat(val.toFixed(FIXDIGIT), "rem");
+  return val.toFixed(FIXDIGIT) == 0
+    ? 0
+    : "".concat(val.toFixed(FIXDIGIT), "rem");
 };
 var getPxString = function getPxString(val) {
   return val === 0 ? val : "".concat(val.toFixed(0), "px");
 };
 var getStringFromPx = function getStringFromPx(val) {
-  var unit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'px';
-  var fontSize = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ROOT_FONTSIZE;
+  var unit =
+    arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "px";
+  var fontSize =
+    arguments.length > 2 && arguments[2] !== undefined
+      ? arguments[2]
+      : ROOT_FONTSIZE;
 
   switch (unit) {
-    case 'em':
+    case "em":
       return getEmString(val / fontSize);
 
-    case 'rem':
+    case "rem":
       return getRemString(val / ROOT_FONTSIZE);
 
-    case 'px':
+    case "px":
     default:
       return getPxString(val);
   }
@@ -213,26 +229,27 @@ var getStringFromPx = function getStringFromPx(val) {
  * @param {Integer} level Level of the rhythm.
  * @param {Integer} capHeight Level of the rhythm.
  * @param {Integer} fontFamily Level of the rhythm.
- * @param {Integer} before 
- * @param {Integer} after 
+ * @param {Integer} before
+ * @param {Integer} after
  */
 
 var getTypographicElement = function getTypographicElement(_ref) {
   var level = _ref.level,
-      capHeight = _ref.capHeight,
-      fontFamily = _ref.fontFamily,
-      _ref$fontWeight = _ref.fontWeight,
-      fontWeight = _ref$fontWeight === void 0 ? null : _ref$fontWeight,
-      _ref$before = _ref.before,
-      before = _ref$before === void 0 ? 0 : _ref$before,
-      _ref$after = _ref.after,
-      after = _ref$after === void 0 ? 0 : _ref$after;
+    capHeight = _ref.capHeight,
+    fontFamily = _ref.fontFamily,
+    _ref$fontWeight = _ref.fontWeight,
+    fontWeight = _ref$fontWeight === void 0 ? null : _ref$fontWeight,
+    _ref$before = _ref.before,
+    before = _ref$before === void 0 ? 0 : _ref$before,
+    _ref$after = _ref.after,
+    after = _ref$after === void 0 ? 0 : _ref$after;
   // get pixel size
   // use Math.floor to get consitent result.
   var grid = Math.floor(ROOT_FONTSIZE * TYPO_BASE_LINE_HEIGHT);
   var fontSizePx = Math.pow(RHYTHM_SCALE, level) * ROOT_FONTSIZE; // conpute the better line height for the font size
 
-  var lineHeightPx = Math.round(fontSizePx * TYPO_BASE_LINE_HEIGHT / grid) * grid;
+  var lineHeightPx =
+    Math.round((fontSizePx * TYPO_BASE_LINE_HEIGHT) / grid) * grid;
 
   var shift = Math.round((lineHeightPx - fontSizePx * capHeight) / 2); //const marginTop = Math.ceil();
 
@@ -243,7 +260,9 @@ var getTypographicElement = function getTypographicElement(_ref) {
     marginBottom += after * grid;
   }
 
-  var letterSpacing = Math.pow(RHYTHM_SCALE, level) * LETTER_SPACING_SCALE * -1 + LETTER_SPACING_SCALE;
+  var letterSpacing =
+    Math.pow(RHYTHM_SCALE, level) * LETTER_SPACING_SCALE * -1 +
+    LETTER_SPACING_SCALE;
 
   if (fontWeight === null) {
     fontWeight = null;
@@ -252,7 +271,7 @@ var getTypographicElement = function getTypographicElement(_ref) {
   return {
     fontFamily: fontFamily,
     fontSize: getStringFromPx(fontSizePx, TYPO_UNIT, ROOT_FONTSIZE),
-    // 
+    //
     lineHeight: getStringFromPx(lineHeightPx, TYPO_UNIT, fontSizePx),
     paddingTop: getStringFromPx(paddingTop, TYPO_UNIT, fontSizePx),
     marginTop: 0,
@@ -277,7 +296,7 @@ var SCREEN_MIN_XL = getEmString(SCREEN_XL);
 var SCREEN_MAX_XS = getEmString(SCREEN_SM - 1 / ROOT_FONTSIZE);
 var SCREEN_MAX_SM = getEmString(SCREEN_MD - 1 / ROOT_FONTSIZE);
 var SCREEN_MAX_MD = getEmString(SCREEN_LG - 1 / ROOT_FONTSIZE);
-var SCREEN_MAX_LG = getEmString(SCREEN_XL - 1 / ROOT_FONTSIZE); // Pixel 
+var SCREEN_MAX_LG = getEmString(SCREEN_XL - 1 / ROOT_FONTSIZE); // Pixel
 // MIN
 
 var SCREEN_MIN_XS_PX = getPxString(SCREEN_SIZE_MIN_XS);
@@ -291,7 +310,7 @@ var SCREEN_MAX_SM_PX = getPxString(SCREEN_SIZE_MIN_MD - 1);
 var SCREEN_MAX_MD_PX = getPxString(SCREEN_SIZE_MIN_LG - 1);
 var SCREEN_MAX_LG_PX = getPxString(SCREEN_SIZE_MIN_XL - 1);
 
-var Breakpoint = /*#__PURE__*/Object.freeze({
+var Breakpoint = /*#__PURE__*/ Object.freeze({
   SCREEN_MIN_XS: SCREEN_MIN_XS,
   SCREEN_MIN_SM: SCREEN_MIN_SM,
   SCREEN_MIN_MD: SCREEN_MIN_MD,
@@ -312,79 +331,71 @@ var Breakpoint = /*#__PURE__*/Object.freeze({
   SCREEN_MAX_LG_PX: SCREEN_MAX_LG_PX
 });
 
-/* 
-BrandColors: Brand or main theme color.
-TypographyColors: text colors.
-BackgroundColors: colors for background.
-Colors: GenericGolors.
-ActionsColors: for actions, errors, messages, ...
-ServiceColors: for facebook, twitter and more,
-*/
-// Inspired from RADIX 
+// Inspired from RADIX
 // https://design.lyft.com/re-approaching-color-9e604ba22c88
 // https://www.colorbox.io
 // https://github.com/lyft/coloralgorithm
-var BLACK = 'hsl(0, 0%, 0%)';
-var BLACK_900 = 'hsla(0, 0%, 0%, .9)';
-var BLACK_700 = 'hsla(0, 0%, 0%, .7)';
-var BLACK_500 = 'hsla(0, 0%, 0%, .5)';
-var BLACK_300 = 'hsla(0, 0%, 0%, .3)';
-var BLACK_100 = 'hsla(0, 0%, 0%, .1)';
-var WHITE = 'hsl(0, 0%, 100%)';
-var WHITE_900 = 'hsla(0, 0%, 100%, .9)';
-var WHITE_700 = 'hsla(0, 0%, 100%, .7)';
-var WHITE_500 = 'hsla(0, 0%, 100%, .5)';
-var WHITE_300 = 'hsla(0, 0%, 100%, .3)';
-var WHITE_100 = 'hsla(0, 0%, 100%, .1)';
-var GRAY_100 = 'hsl(208, 32%, 99%)';
-var GRAY_200 = 'hsl(208, 28%, 97%)';
-var GRAY_300 = 'hsl(208, 24%, 93%)';
-var GRAY_400 = 'hsl(208, 20%, 86%)';
-var GRAY_500 = 'hsl(208, 16%, 76%)';
-var GRAY_600 = 'hsl(208, 12%, 46%)';
-var GRAY_700 = 'hsl(208, 16%, 15%)';
-var GRAY_800 = 'hsl(208, 20%, 10%)';
-var GRAY_900 = 'hsl(208, 24%, 7%)';
-var BLUE_100 = 'hsl(208, 99%, 99%)';
-var BLUE_200 = 'hsl(208, 96%, 97%)';
-var BLUE_300 = 'hsl(208, 78%, 78%)';
-var BLUE_400 = 'hsl(208, 76%, 68%)';
-var BLUE_500 = 'hsl(208, 98%, 50%)';
-var BLUE_600 = 'hsl(208, 82%, 45%)';
-var BLUE_700 = 'hsl(208, 99%, 35%)';
-var BLUE_800 = 'hsl(208, 99%, 12%)';
-var BLUE_900 = 'hsl(208, 99%, 10%)';
-var GREEN_100 = 'hsl(142, 60%, 99%)';
-var GREEN_200 = 'hsl(142, 60%, 97%)';
-var GREEN_300 = 'hsl(142, 40%, 72%)';
-var GREEN_400 = 'hsl(142, 34%, 64%)';
-var GREEN_500 = 'hsl(142, 68%, 42%)';
-var GREEN_600 = 'hsl(142, 62%, 40%)';
-var GREEN_700 = 'hsl(142, 60%, 38%)';
-var GREEN_800 = 'hsl(142, 60%, 12%)';
-var GREEN_900 = 'hsl(142, 60%, 10%)';
-var YELLOW_100 = 'hsl(54, 100%, 99%)';
-var YELLOW_200 = 'hsl(54, 100%, 97%)';
-var YELLOW_300 = 'hsl(54, 100%, 92%)';
-var YELLOW_400 = 'hsl(54, 100%, 72%)';
-var YELLOW_500 = 'hsl(52, 100%, 46%)';
-var YELLOW_600 = 'hsl(52, 100%, 40%)';
-var YELLOW_700 = 'hsl(52, 100%, 18%)';
-var YELLOW_800 = 'hsl(52, 100%, 13%)';
-var YELLOW_900 = 'hsl(52, 100%, 10%)';
-var RED_100 = 'hsl(0, 100%, 99%)';
-var RED_200 = 'hsl(0, 100%, 97%)';
-var RED_300 = 'hsl(0, 85%, 72%)';
-var RED_400 = 'hsl(0, 85%, 78%)';
-var RED_500 = 'hsl(0, 100%, 65%)';
-var RED_600 = 'hsl(0, 100%, 45%)';
-var RED_700 = 'hsl(0, 100%, 40%)';
-var RED_800 = 'hsl(0, 100%, 12%)';
-var RED_900 = 'hsl(0, 100%, 10%)';
-var COLOR_FACEBOOK = '#4267b2';
-var COLOR_TWITTER = '#1da1f2';
+var BLACK = "hsl(0, 0%, 0%)";
+var BLACK_900 = "hsla(0, 0%, 0%, .9)";
+var BLACK_700 = "hsla(0, 0%, 0%, .7)";
+var BLACK_500 = "hsla(0, 0%, 0%, .5)";
+var BLACK_300 = "hsla(0, 0%, 0%, .3)";
+var BLACK_100 = "hsla(0, 0%, 0%, .1)";
+var WHITE = "hsl(0, 0%, 100%)";
+var WHITE_900 = "hsla(0, 0%, 100%, .9)";
+var WHITE_700 = "hsla(0, 0%, 100%, .7)";
+var WHITE_500 = "hsla(0, 0%, 100%, .5)";
+var WHITE_300 = "hsla(0, 0%, 100%, .3)";
+var WHITE_100 = "hsla(0, 0%, 100%, .1)";
+var GRAY_100 = "hsl(208, 32%, 99%)";
+var GRAY_200 = "hsl(208, 28%, 97%)";
+var GRAY_300 = "hsl(208, 24%, 93%)";
+var GRAY_400 = "hsl(208, 20%, 86%)";
+var GRAY_500 = "hsl(208, 16%, 76%)";
+var GRAY_600 = "hsl(208, 12%, 46%)";
+var GRAY_700 = "hsl(208, 16%, 15%)";
+var GRAY_800 = "hsl(208, 20%, 10%)";
+var GRAY_900 = "hsl(208, 24%, 7%)";
+var BLUE_100 = "hsl(208, 99%, 99%)";
+var BLUE_200 = "hsl(208, 96%, 97%)";
+var BLUE_300 = "hsl(208, 78%, 78%)";
+var BLUE_400 = "hsl(208, 76%, 68%)";
+var BLUE_500 = "hsl(208, 98%, 50%)";
+var BLUE_600 = "hsl(208, 82%, 45%)";
+var BLUE_700 = "hsl(208, 99%, 35%)";
+var BLUE_800 = "hsl(208, 99%, 12%)";
+var BLUE_900 = "hsl(208, 99%, 10%)";
+var GREEN_100 = "hsl(142, 60%, 99%)";
+var GREEN_200 = "hsl(142, 60%, 97%)";
+var GREEN_300 = "hsl(142, 40%, 72%)";
+var GREEN_400 = "hsl(142, 34%, 64%)";
+var GREEN_500 = "hsl(142, 68%, 42%)";
+var GREEN_600 = "hsl(142, 62%, 40%)";
+var GREEN_700 = "hsl(142, 60%, 38%)";
+var GREEN_800 = "hsl(142, 60%, 12%)";
+var GREEN_900 = "hsl(142, 60%, 10%)";
+var YELLOW_100 = "hsl(54, 100%, 99%)";
+var YELLOW_200 = "hsl(54, 100%, 97%)";
+var YELLOW_300 = "hsl(54, 100%, 92%)";
+var YELLOW_400 = "hsl(54, 100%, 72%)";
+var YELLOW_500 = "hsl(52, 100%, 46%)";
+var YELLOW_600 = "hsl(52, 100%, 40%)";
+var YELLOW_700 = "hsl(52, 100%, 18%)";
+var YELLOW_800 = "hsl(52, 100%, 13%)";
+var YELLOW_900 = "hsl(52, 100%, 10%)";
+var RED_100 = "hsl(0, 100%, 99%)";
+var RED_200 = "hsl(0, 100%, 97%)";
+var RED_300 = "hsl(0, 85%, 72%)";
+var RED_400 = "hsl(0, 85%, 78%)";
+var RED_500 = "hsl(0, 100%, 65%)";
+var RED_600 = "hsl(0, 100%, 45%)";
+var RED_700 = "hsl(0, 100%, 40%)";
+var RED_800 = "hsl(0, 100%, 12%)";
+var RED_900 = "hsl(0, 100%, 10%)";
+var COLOR_FACEBOOK = "#4267b2";
+var COLOR_TWITTER = "#1da1f2";
 
-var Colors = /*#__PURE__*/Object.freeze({
+var Colors = /*#__PURE__*/ Object.freeze({
   BLACK: BLACK,
   BLACK_900: BLACK_900,
   BLACK_700: BLACK_700,
@@ -496,7 +507,7 @@ var P = getTypographicElement({
   after: _TYPO_P_SPACING_AFTER
 });
 
-var CSSFont = /*#__PURE__*/Object.freeze({
+var CSSFont = /*#__PURE__*/ Object.freeze({
   H1: H1,
   H2: H2,
   H3: H3,
@@ -532,7 +543,7 @@ var easeInBack = bezier(0.6, -0.28, 0.735, 0.045);
 var easeOutBack = bezier(0.175, 0.885, 0.32, 1.275);
 var easeInOutBack = bezier(0.68, -0.55, 0.265, 1.55);
 
-var Curves = /*#__PURE__*/Object.freeze({
+var Curves = /*#__PURE__*/ Object.freeze({
   linear: linear,
   easeInCubic: easeInCubic,
   easeOutCubic: easeOutCubic,
@@ -562,16 +573,17 @@ var Curves = /*#__PURE__*/Object.freeze({
 
 function distribute(value, rangeA, rangeB) {
   var _Array$from = Array.from(rangeA),
-      _Array$from2 = _slicedToArray(_Array$from, 2),
-      fromLow = _Array$from2[0],
-      fromHigh = _Array$from2[1];
+    _Array$from2 = _slicedToArray(_Array$from, 2),
+    fromLow = _Array$from2[0],
+    fromHigh = _Array$from2[1];
 
   var _Array$from3 = Array.from(rangeB),
-      _Array$from4 = _slicedToArray(_Array$from3, 2),
-      toLow = _Array$from4[0],
-      toHigh = _Array$from4[1];
+    _Array$from4 = _slicedToArray(_Array$from3, 2),
+    toLow = _Array$from4[0],
+    toHigh = _Array$from4[1];
 
-  var result = toLow + (value - fromLow) / (fromHigh - fromLow) * (toHigh - toLow);
+  var result =
+    toLow + ((value - fromLow) / (fromHigh - fromLow)) * (toHigh - toLow);
 
   if (toLow < toHigh) {
     if (result < toLow) {
@@ -594,7 +606,7 @@ function distribute(value, rangeA, rangeB) {
   return result;
 }
 
-function generate (_ref) {
+function generate(_ref) {
   var specs = _ref.specs;
 
   function generateNumberOfSteps(curve, steps) {
@@ -618,19 +630,33 @@ function generate (_ref) {
 
   for (var index in lum_array) {
     var _step = lum_array[index];
-    lum_array_adjusted.push(distribute(_step, [0, 1], [specs.lum_end * .01, specs.lum_start * .01], true));
+    lum_array_adjusted.push(
+      distribute(
+        _step,
+        [0, 1],
+        [specs.lum_end * 0.01, specs.lum_start * 0.01],
+        true
+      )
+    );
   }
 
   for (var index in sat_array) {
     var _step2 = sat_array[index];
-    var sat_step = distribute(_step2, [0, 1], [specs.sat_start * .01, specs.sat_end * .01], true);
-    sat_step = sat_step * (specs.sat_rate * .01);
+    var sat_step = distribute(
+      _step2,
+      [0, 1],
+      [specs.sat_start * 0.01, specs.sat_end * 0.01],
+      true
+    );
+    sat_step = sat_step * (specs.sat_rate * 0.01);
     sat_array_adjusted.push(sat_step);
   }
 
   for (var index in hue_array) {
     var _step3 = hue_array[index];
-    hue_array_adjusted.push(distribute(_step3, [0, 1], [specs.hue_start, specs.hue_end]));
+    hue_array_adjusted.push(
+      distribute(_step3, [0, 1], [specs.hue_start, specs.hue_end])
+    );
   }
 
   sat_array_adjusted.reverse();
@@ -652,8 +678,12 @@ function generate (_ref) {
       params.saturation = 1;
     }
 
-    var hex = chroma(chroma.hsv([params.hue, params.saturation, params.luminosity]));
-    var hexRGB = chroma(chroma.hsv([params.hue, params.saturation, params.luminosity])).rgb();
+    var hex = chroma(
+      chroma.hsv([params.hue, params.saturation, params.luminosity])
+    );
+    var hexRGB = chroma(
+      chroma.hsv([params.hue, params.saturation, params.luminosity])
+    ).rgb();
     var contrastWhite = chroma.contrast(hex, "white").toFixed(2);
     var contrastBlack = chroma.contrast(hex, "black").toFixed(2);
     var displayColor = "";
@@ -721,8 +751,30 @@ var brandColorScheme_one = {
 var colorArray = generate(brandColorScheme_one);
 var _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT = colorArray;
 
-var BrandColors = /*#__PURE__*/Object.freeze({
+var BrandColors = /*#__PURE__*/ Object.freeze({
   _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT: _WIP_DEBUG_BRANDCOLOR_SCHEME_RESULT
+});
+
+var EM_1PX = 1 / ROOT_FONTSIZE;
+var SPACER = TYPO_BASE_LINE_HEIGHT;
+var SPACER_MINUS_1PX = TYPO_BASE_LINE_HEIGHT - EM_1PX;
+var SPACER_HALF = TYPO_BASE_LINE_HEIGHT / 2;
+var SPACER_HALF_MINUS_1PX = TYPO_BASE_LINE_HEIGHT / 2 - EM_1PX;
+var SPACER_ONE_THIRD = TYPO_BASE_LINE_HEIGHT / 3;
+var SPACER_ONE_THIRD_MINUS_1PX = TYPO_BASE_LINE_HEIGHT / 3 - EM_1PX;
+var SPACER_TWO_THIRD = (TYPO_BASE_LINE_HEIGHT / 3) * 2;
+var SPACER_TWO_THIRD_MINUS_1PX = (TYPO_BASE_LINE_HEIGHT / 3) * 2 - EM_1PX;
+
+var Grid = /*#__PURE__*/ Object.freeze({
+  EM_1PX: EM_1PX,
+  SPACER: SPACER,
+  SPACER_MINUS_1PX: SPACER_MINUS_1PX,
+  SPACER_HALF: SPACER_HALF,
+  SPACER_HALF_MINUS_1PX: SPACER_HALF_MINUS_1PX,
+  SPACER_ONE_THIRD: SPACER_ONE_THIRD,
+  SPACER_ONE_THIRD_MINUS_1PX: SPACER_ONE_THIRD_MINUS_1PX,
+  SPACER_TWO_THIRD: SPACER_TWO_THIRD,
+  SPACER_TWO_THIRD_MINUS_1PX: SPACER_TWO_THIRD_MINUS_1PX
 });
 
 var grid = TYPO_BASE_LINE_HEIGHT / 3;
@@ -732,7 +784,7 @@ var GUTTER_MD = getEmString(2 * grid);
 var GUTTER_LG = getEmString(3 * grid);
 var GUTTER_XL = getEmString(3 * grid);
 
-var Gutter = /*#__PURE__*/Object.freeze({
+var Gutter = /*#__PURE__*/ Object.freeze({
   GUTTER_SX: GUTTER_SX,
   GUTTER_SM: GUTTER_SM,
   GUTTER_MD: GUTTER_MD,
@@ -740,14 +792,17 @@ var Gutter = /*#__PURE__*/Object.freeze({
   GUTTER_XL: GUTTER_XL
 });
 
-var grid$1 = TYPO_BASE_LINE_HEIGHT / 3;
-var MARGIN_SX = getEmString(2 * grid$1);
-var MARGIN_SM = getEmString(2 * grid$1);
-var MARGIN_MD = getEmString(3 * grid$1);
-var MARGIN_LG = getEmString(4 * grid$1);
-var MARGIN_XL = getEmString(4 * grid$1);
+var MARGIN_SX = getEmString(SPACER_TWO_THIRD); // ~ 16.6
 
-var Margin = /*#__PURE__*/Object.freeze({
+var MARGIN_SM = getEmString(SPACER_TWO_THIRD); // ~ 16.6
+
+var MARGIN_MD = getEmString(SPACER); // ~24
+
+var MARGIN_LG = getEmString(2 * SPACER_TWO_THIRD); // ~32
+
+var MARGIN_XL = getEmString(2 * SPACER_TWO_THIRD); // ~32
+
+var Margin = /*#__PURE__*/ Object.freeze({
   MARGIN_SX: MARGIN_SX,
   MARGIN_SM: MARGIN_SM,
   MARGIN_MD: MARGIN_MD,
@@ -764,7 +819,7 @@ var ZINDEX_MODAL = 1050;
 var ZINDEX_POPOVER = 1060;
 var ZINDEX_TOOLTIP = 1070;
 
-var ZIndex = /*#__PURE__*/Object.freeze({
+var ZIndex = /*#__PURE__*/ Object.freeze({
   ZINDEX_GROUND: ZINDEX_GROUND,
   ZINDEX_DROPDOWN: ZINDEX_DROPDOWN,
   ZINDEX_STICKY: ZINDEX_STICKY,
@@ -775,8 +830,20 @@ var ZIndex = /*#__PURE__*/Object.freeze({
   ZINDEX_TOOLTIP: ZINDEX_TOOLTIP
 });
 
-var DSV = _objectSpread({}, Breakpoint, Typography, Colors, Gutter, Margin, ZIndex, CSSFont, BrandColors, {
-  _Rhythm: _Rhythm
-});
+var DSV = _objectSpread(
+  {},
+  Breakpoint,
+  Typography,
+  Colors,
+  Grid,
+  Gutter,
+  Margin,
+  ZIndex,
+  CSSFont,
+  BrandColors,
+  {
+    _Rhythm: _Rhythm
+  }
+);
 
 export default DSV;

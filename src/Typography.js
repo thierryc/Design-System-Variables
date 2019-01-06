@@ -2,7 +2,7 @@ import { FIBONACCI } from './Rhythm';
 
 export const ROOT_FONTSIZE = 16;
 
-export const TYPO_DEFAULT_FONTSIZE = 1; //em
+export const TYPO_DEFAULT_FONTSIZE = 1; //em 
 
 /* Edit your font  */
 export const TYPO_FONT_FAMILY_URL = 'https://fonts.googleapis.com/css?family=Lato|Lora:400,700';

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import * as dsv from "./design-system-variables";
 import { H1, H2, H3, H4, H5, H6, P } from "./components/Heading";
+import { Page } from './components/Page'
 
 import "./App.css";
 
@@ -8,7 +9,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <div style={{}}>
+        <Page>
           <P>
             Le bon sens est la chose du monde la mieux partagée : car chacun
             pense en être si bien pourvu, que ceux même qui sont les plus
@@ -119,10 +120,10 @@ class App extends Component {
             les formes, ou natures, des individus d'une même espèce.
           </P>
 
-          <code>
+        </Page>
+        <code>
             <pre>{JSON.stringify(dsv, null, 4)}</pre>
-          </code>
-        </div>
+        </code>
       </Fragment>
     );
   }
