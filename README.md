@@ -3,6 +3,8 @@
 Variables Design System for Grid, Layout, Media Queries, Responsive Design, Typography Rhythm and colors.
 A “ready to use” set of variables for Design System.
 
+Align on a vertical grid drived by the typography.
+
 ## Demo
 
 https://thierryc.github.io/Design-System-Variables
