@@ -1,6 +1,12 @@
 # Design-System-Variables
 
-WIP - WIP - WIP - WIP
+
+
+## Status
+
+Work in progress at an early stage, not production ready
+
+----
 
 Variables Design System for Grid, Layout, Media Queries, Responsive Design, Typography Rhythm and colors.
 A “ready to use” set of variables for Design System.
