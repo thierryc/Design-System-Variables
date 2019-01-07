@@ -1,8 +1,18 @@
 import React, { Component, Fragment } from "react";
 import * as dsv from "./design-system-variables";
-import { H1, H2, H3, H4, H5, H6, P, PLead, Blockquote } from "./components/Heading";
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  H5,
+  H6,
+  P,
+  PLead,
+  Blockquote
+} from "./components/Heading";
 import { Page, TextContainer } from "./components/Page";
-import Variables from './components/DisplayVariables';
+import Variables from "./components/DisplayVariables";
 
 import "./App.css";
 
@@ -45,8 +55,9 @@ class App extends Component {
               rift in the clouds.
             </P>
             <Blockquote>
-              Apparently we had reached a great height in the atmosphere, for
-              the sky was a dead black, and the stars had ceased to twinkle.
+              Blockquote Block: Apparently we had reached a great height in the
+              atmosphere, for the sky was a dead black, and the stars had ceased
+              to twinkle.
             </Blockquote>
             <P>
               Apparently we had reached a great height in the atmosphere, for
@@ -59,8 +70,10 @@ class App extends Component {
               rift in the clouds.
             </P>
 
-            <H2>Heading 2 on tow lines, I could see a ruddy light streaming through a
-              rift in the clouds.</H2>
+            <H2>
+              Heading 2 on tow lines, I could see a ruddy light streaming
+              through a rift in the clouds.
+            </H2>
             <P>
               Apparently we had reached a great height in the atmosphere, for
               the sky was a dead black, and the stars had ceased to twinkle. By
@@ -122,7 +135,7 @@ class App extends Component {
           </TextContainer>
           <TextContainer>
             <H1>Variables</H1>
-            <Variables data={dsv}/>
+            <Variables data={dsv} />
           </TextContainer>
         </Page>
       </Fragment>

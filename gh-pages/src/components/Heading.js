@@ -40,6 +40,8 @@ export const Blockquote = ({children}) => <blockquote style={{
   marginRight: `-${dsv.SPACER_HALF}rem`,
   paddingLeft: `${dsv.SPACER_HALF_MINUS_1PX}rem`,
   paddingRight: `${dsv.SPACER_HALF}rem`,
+  paddingBottom: dsv.P_LEAD.marginBottom,
+  marginBottom: 0,
   borderLeft: `1px solid #000000`,
 }}>{children}</blockquote>;
 
