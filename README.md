@@ -138,5 +138,7 @@ Video Sketch soon
 https://github.com/sebdesign/cap-height
 
 
+## License
 
+MIT © [Thierry Charbonnel](https://www.anotherplanet.io)
 
