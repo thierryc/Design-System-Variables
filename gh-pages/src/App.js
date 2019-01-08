@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import * as dsv from "./design-system-variables";
+import React, { Component, Fragment } from 'react';
+import * as dsv from './design-system-variables';
 import {
   H1,
   H2,
@@ -10,17 +10,48 @@ import {
   P,
   PLead,
   Blockquote
-} from "./components/Heading";
-import { Page, TextContainer } from "./components/Page";
-import Variables from "./components/DisplayVariables";
+} from './components/Heading';
+import { Page, TextContainer } from './components/Page';
+import PageContainer from './components/PageContainer';
+import Variables from './components/DisplayVariables';
+import Switch from './components/Switch';
 
-import "./App.css";
+import './App.css';
 
 class App extends Component {
+
+  state = {
+    showGrid: true,
+  };
+
+  handleShowGridChange = changeEvent => {
+    // toggle
+    this.setState(prevState => ({
+      showGrid: !prevState.showGrid
+    }));
+  };
+
   render() {
+    const { showGrid } = this.state;
+
     return (
-      <Fragment>
+      <PageContainer grid={showGrid}>
         <Page>
+          <div style={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            justifyContent: 'flex-end',
+          }}>
+            <P style={{
+              marginRight: `${dsv.SPACER_ONE_THIRD}em`,
+            }}>Grig: </P>
+            <Switch 
+              checked={showGrid}
+              onChange={this.handleShowGridChange}
+            />
+          </div>
+          
           <TextContainer>
             <H1>Design System Variables</H1>
             <PLead>
@@ -138,7 +169,7 @@ class App extends Component {
             <Variables data={dsv} />
           </TextContainer>
         </Page>
-      </Fragment>
+      </PageContainer>
     );
   }
 }

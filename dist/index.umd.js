@@ -5015,7 +5015,7 @@
     GUTTER_XL: GUTTER_XL
   });
 
-  var MARGIN_SX = getEmString(SPACER_TWO_THIRD); // ~ 16.6
+  var MARGIN_XS = getEmString(SPACER_TWO_THIRD); // ~ 16.6
 
   var MARGIN_SM = getEmString(SPACER_TWO_THIRD); // ~ 16.6
 
@@ -5026,7 +5026,7 @@
   var MARGIN_XL = getEmString(2 * SPACER_TWO_THIRD); // ~32
 
   var Margin = /*#__PURE__*/ Object.freeze({
-    MARGIN_SX: MARGIN_SX,
+    MARGIN_XS: MARGIN_XS,
     MARGIN_SM: MARGIN_SM,
     MARGIN_MD: MARGIN_MD,
     MARGIN_LG: MARGIN_LG,

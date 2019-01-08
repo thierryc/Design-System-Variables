@@ -13,6 +13,7 @@
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "test": "node test/test.js",
+    "start": "npm run dev",
     "pretest": "npm run build",
     "lint": "node_modules/eslint/bin/eslint.js 'src/**/*' --fix",
     "predeploy": "cd gh-pages && git pull && npm install && npm run build",
