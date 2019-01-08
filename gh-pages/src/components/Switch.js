@@ -5,11 +5,10 @@ import {
   SPACER_MINUS_1PX, 
   SPACER_ONE_THIRD,  
   SPACER_ONE_THIRD_MINUS_1PX,
-  SPACER_TWO_THIRD, 
-  GRAY_400, 
-  GRAY_500, 
-  BLUE_400, 
-  BLUE_600,
+  SPACER_TWO_THIRD,  
+  BLACK_200, 
+  BLACK, 
+  BLACK_300,
   P,
 } from './../design-system-variables';
 
@@ -29,12 +28,12 @@ const Checkbox = styled.input`
   z-index: -1;
 
   &:checked + div {
-    background-color: ${BLUE_400};
+    background-color: ${BLACK_300};
   }
 
   &:checked + div::before {
     transform: translateX(${SPACER_TWO_THIRD}em);
-    background-color: ${BLUE_600};
+    background-color: ${BLACK};
   }
 `;
 
@@ -45,7 +44,7 @@ const Dummy = styled.div`
   left: 0;
   right: 0;
   bottom: ${SPACER_ONE_THIRD_MINUS_1PX * 0.333}em;
-  background-color: ${GRAY_400};
+  background-color: ${BLACK_300};
   border-radius: 9999px;
   transition: background-color 100ms ease;
 
@@ -56,7 +55,7 @@ const Dummy = styled.div`
     width: ${SPACER_TWO_THIRD}em;
     left: 0;
     bottom: 0;
-    background-color: ${GRAY_500};
+    background-color: ${BLACK_300};
     transition: transform 100ms ease;
     border-radius: 50%;
   }

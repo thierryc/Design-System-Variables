@@ -44,8 +44,10 @@ class App extends Component {
             justifyContent: 'flex-end',
           }}>
             <P style={{
-              marginRight: `${dsv.SPACER_ONE_THIRD}em`,
-            }}>Grig: </P>
+                marginRight: `${dsv.SPACER_ONE_THIRD}em`,
+              }}
+              onClick={this.handleShowGridChange}
+            >Grig: </P>
             <Switch 
               checked={showGrid}
               onChange={this.handleShowGridChange}

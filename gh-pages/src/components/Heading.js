@@ -25,15 +25,19 @@ export const H6 = ({children}) => <h6 style={{
   ...dsv.H6,
 }}>{children}</h6>;
 
-export const P = ({children, style}) => <p style={{
+export const P = ({children, style, onClick}) => <p style={{
+  cursor: (onClick) ? 'pointer' : 'default',
   ...dsv.P,
   ...style,
-}}>{children}</p>;
+}}
+onClick={onClick}
+>{children}</p>;
 
 export const PLead = ({children, style}) => <p style={{
   ...dsv.P_LEAD,
   ...style,
-}}>{children}</p>;
+}}
+>{children}</p>;
 
 export const Blockquote = ({children}) => <blockquote style={{
   ...dsv.P_LEAD,
