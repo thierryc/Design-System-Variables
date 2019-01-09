@@ -5,9 +5,9 @@ import {
   SPACER_MINUS_1PX, 
   SPACER_ONE_THIRD,  
   SPACER_ONE_THIRD_MINUS_1PX,
-  SPACER_TWO_THIRD,  
-  BLACK_200, 
+  SPACER_TWO_THIRD,
   BLACK, 
+  BLACK_200,
   BLACK_300,
   P,
 } from './../design-system-variables';
@@ -28,7 +28,7 @@ const Checkbox = styled.input`
   z-index: -1;
 
   &:checked + div {
-    background-color: ${BLACK_300};
+    background-color: ${BLACK_200};
   }
 
   &:checked + div::before {
@@ -44,7 +44,7 @@ const Dummy = styled.div`
   left: 0;
   right: 0;
   bottom: ${SPACER_ONE_THIRD_MINUS_1PX * 0.333}em;
-  background-color: ${BLACK_300};
+  background-color: ${BLACK_200};
   border-radius: 9999px;
   transition: background-color 100ms ease;
 

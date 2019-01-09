@@ -21,6 +21,7 @@ export const BLACK_900 = 'hsla(0, 0%, 0%, .9)';
 export const BLACK_700 = 'hsla(0, 0%, 0%, .7)';
 export const BLACK_500 = 'hsla(0, 0%, 0%, .5)';
 export const BLACK_300 = 'hsla(0, 0%, 0%, .3)';
+export const BLACK_200 = 'hsla(0, 0%, 0%, .2)';
 export const BLACK_100 = 'hsla(0, 0%, 0%, .1)';
 
 export const WHITE = 'hsl(0, 0%, 100%)';

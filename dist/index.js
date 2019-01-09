@@ -378,6 +378,7 @@ var BLACK_900 = "hsla(0, 0%, 0%, .9)";
 var BLACK_700 = "hsla(0, 0%, 0%, .7)";
 var BLACK_500 = "hsla(0, 0%, 0%, .5)";
 var BLACK_300 = "hsla(0, 0%, 0%, .3)";
+var BLACK_200 = "hsla(0, 0%, 0%, .2)";
 var BLACK_100 = "hsla(0, 0%, 0%, .1)";
 var WHITE = "hsl(0, 0%, 100%)";
 var WHITE_900 = "hsla(0, 0%, 100%, .9)";
@@ -439,6 +440,7 @@ var Colors = /*#__PURE__*/ Object.freeze({
   BLACK_700: BLACK_700,
   BLACK_500: BLACK_500,
   BLACK_300: BLACK_300,
+  BLACK_200: BLACK_200,
   BLACK_100: BLACK_100,
   WHITE: WHITE,
   WHITE_900: WHITE_900,

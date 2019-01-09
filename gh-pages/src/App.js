@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import * as dsv from './design-system-variables';
+import React, { Component } from "react";
+import * as dsv from "./design-system-variables";
 import {
   H1,
   H2,
@@ -10,18 +10,19 @@ import {
   P,
   PLead,
   Blockquote
-} from './components/Heading';
-import { Page, TextContainer } from './components/Page';
-import PageContainer from './components/PageContainer';
-import Variables from './components/DisplayVariables';
-import Switch from './components/Switch';
+} from "./components/Heading";
+import { A } from './components/Link';
+import { Page, TextContainer } from "./components/Page";
+import PageContainer from "./components/PageContainer";
+import Variables from "./components/DisplayVariables";
+import Switch from "./components/Switch";
 
-import './App.css';
+import "./App.css";
 
 class App extends Component {
-
   state = {
     showGrid: true,
+    responsiveBackgroundColor: true,
   };
 
   handleShowGridChange = changeEvent => {
@@ -31,38 +32,56 @@ class App extends Component {
     }));
   };
 
+  handleShowResponsiveBackgroundColorChange = changeEvent => {
+    // toggle
+    this.setState(prevState => ({
+      responsiveBackgroundColor: !prevState.responsiveBackgroundColor
+    }));
+  };
+
   render() {
-    const { showGrid } = this.state;
+    const { showGrid, responsiveBackgroundColor } = this.state;
 
     return (
       <PageContainer grid={showGrid}>
-        <Page>
-          <div style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'flex-start',
-            justifyContent: 'flex-end',
-          }}>
-            <P style={{
+        <Page showResponsiveBackgroundColor={responsiveBackgroundColor}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              justifyContent: "flex-end"
+            }}
+          >
+            <P
+              style={{
+                marginLeft: `${dsv.SPACER_ONE_THIRD}em`,
+                marginRight: `${dsv.SPACER_ONE_THIRD}em`,
+              }}
+              onClick={this.handleShowResponsiveBackgroundColorChange}
+            >
+               RWD Background:
+            </P>
+            <Switch checked={responsiveBackgroundColor} onChange={this.handleShowResponsiveBackgroundColorChange} />
+            <P
+              style={{
+                marginLeft: `${dsv.SPACER_ONE_THIRD}em`,
                 marginRight: `${dsv.SPACER_ONE_THIRD}em`,
               }}
               onClick={this.handleShowGridChange}
-            >Grig: </P>
-            <Switch 
-              checked={showGrid}
-              onChange={this.handleShowGridChange}
-            />
+            >
+              Grid: 
+            </P>
+            <Switch checked={showGrid} onChange={this.handleShowGridChange} />
           </div>
-          
+
           <TextContainer>
             <H1>Design System Variables</H1>
             <PLead>
-              Apparently we had reached a great height in the atmosphere, for
-              the sky was a dead black, and the stars had ceased to twinkle. By
-              the same illusion which lifts the horizon of the sea to the level
-              of the spectator on a hillside, the sable cloud beneath was dished
-              out, and the car seemed to float in the middle of an immense dark
-              sphere, whose upper half was strewn with silver.
+              This Consistent Spacing Design System
+              Variable set is a <b><A href='http://thinkingwithtype.com/grid/'>Baseline Horizontal grid</A></b> and a <b>Vertical Layout grid</b> drive by
+              Rhythm and Typography. A baseline grid is a grid of horizontal
+              lines that are evenly spaced across your page.
             </PLead>
 
             <P>
@@ -166,6 +185,12 @@ class App extends Component {
               rift in the clouds.
             </P>
           </TextContainer>
+
+          <TextContainer>
+            <H1>Horizontal Grid</H1>
+          </TextContainer>
+
+
           <TextContainer>
             <H1>Variables</H1>
             <Variables data={dsv} />
