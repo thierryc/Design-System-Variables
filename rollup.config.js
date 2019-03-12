@@ -28,7 +28,7 @@ export default [
 			prettier({
 				tabWidth: 2,
 				singleQuote: false,
-				parser: 'babylon',
+				parser: 'babel',
 			}),
 			replace({
 				ENVIRONMENT: JSON.stringify('production')
@@ -59,7 +59,7 @@ export default [
 			prettier({
 				tabWidth: 2,
 				singleQuote: false,
-				parser: 'babylon',
+				parser: 'babel',
 			}),
 			replace({
 				ENVIRONMENT: JSON.stringify('production')

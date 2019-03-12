@@ -4,9 +4,9 @@
   "private": true,
   "homepage": "https://thierryc.github.io/Design-System-Variables/",
   "dependencies": {
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "2.1.8",
     "styled-components": "^4.1.3"
   },
   "scripts": {

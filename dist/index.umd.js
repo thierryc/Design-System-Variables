@@ -834,7 +834,7 @@
       };
 
       chroma.Color = Color_1;
-      chroma.version = "2.0.2";
+      chroma.version = "2.0.3";
 
       var chroma_1 = chroma;
 
@@ -1152,7 +1152,7 @@
           // keep alpha channel
           return [r, g, b, args[3]];
         }
-        return [r, g, b];
+        return [r, g, b, 1];
       };
 
       var hsl2rgb_1 = hsl2rgb;
