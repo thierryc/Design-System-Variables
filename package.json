@@ -1,9 +1,10 @@
 {
   "name": "@ap.cx/design-system-variables",
-  "version": "1.0.0-alpha",
+  "version": "1.0.1-alpha",
   "description": "design system variables",
   "author": "thierryc",
   "license": "MIT",
+  "private": false,
   "repository": "thierryc/design-system-variables",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
